@@ -18,6 +18,7 @@ public class NoRefrigerado extends Medicamento{
     
     Scanner datos = new Scanner(System.in);
     Scanner cadenas = new Scanner(System.in);
+    int numerito = 0;
     
     public NoRefrigerado(){
         super();
