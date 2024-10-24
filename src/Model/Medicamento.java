@@ -15,14 +15,14 @@ import java.util.InputMismatchException;
  * @author Sofia Moreno y Ricardo Barrios
  */
 public abstract class Medicamento {
-    protected String codigoMedicamento;
-    protected String nombreMedicamento;
-    protected double costoMedicamento;
-    protected double precioVenta;
+    protected String codigoMedicamento;//
+    protected String nombreMedicamento;//
+    protected double costoMedicamento;//
+    protected double precioVenta;//
     protected int unidadesVendidas;
     protected int unidadesExistentes;
-    protected String fechaVencimiento;
-    protected String numeroLote;
+    protected String fechaVencimiento;//
+    protected String numeroLote;//
     protected String vigenciaMedicamento;
     private int mes, ano;   
     boolean descu = false;
