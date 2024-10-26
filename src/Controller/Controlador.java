@@ -8,18 +8,6 @@ package Controller;
  *
  * @author Sofia Moreno
  */
-public class ConnectorDB {
-//    Connection cx;
+public class Controlador {
     
-    public void conectarDB(){
-        
-    }
-    
-    public void desconectarDB(){
-        
-    }
-    
-    public static void main(){
-        
-    }
 }
