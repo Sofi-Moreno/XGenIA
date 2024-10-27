@@ -41,8 +41,8 @@ public class ConnectionDB {
             System.out.println("No se pudo desconectar de la base de datos.");        }
     }
     
-    public static void main(String[] args){
-        ConnectionDB c=new ConnectionDB();
-        c.conectarDB();
-    }
+//    public static void main(String[] args){
+//        ConnectionDB c=new ConnectionDB();
+//        c.conectarDB();
+//    }
 }
