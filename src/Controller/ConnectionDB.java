@@ -35,7 +35,15 @@ public class ConnectionDB {
          } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("No se conecto la base de datos.");
          }
-        
     }
-    
+    public void desconectarDB(){
+        try {
+            cx.close();
+        } catch (SQLException ex) {
+            System.out.println("No se pudo desconectar de la base de datos.");        
+        }
+    }
+    public static void main(String[] args){
+        ConnectionDB c=new ConnectionDB();
+    }
 }
