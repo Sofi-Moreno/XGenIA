@@ -4,11 +4,16 @@
  */
 package Controller;
 
+import java.sql.*;
+import java.sql.Statement;
+import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.InputMismatchException;
+
 
 /**
  *
@@ -16,13 +21,13 @@ import java.util.logging.Logger;
  */
 public class ConnectionDB {
     Connection cx;
-    String db = "x-genia";
-    String url = "jdbc:mysql://localhost:3306/"+db;
-    String user = "root";
-    String pass = "23082018";
+    private String db = "x-genia";
+    private String url = "jdbc:mysql://localhost:3306/"+db;
+    private String user = "root";
+    private String pass = "23082018";
     
     
-    public Connection conectarDB(){
+    public ConnectionDB(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
             cx=DriverManager.getConnection(url,user,pass);
@@ -30,19 +35,7 @@ public class ConnectionDB {
          } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("No se conecto la base de datos.");
          }
-        return cx;
         
     }
     
-    public void desconectarDB(){
-        try {
-            cx.close();
-        } catch (SQLException ex) {
-            System.out.println("No se pudo desconectar de la base de datos.");        }
-    }
-    
-//    public static void main(String[] args){
-//        ConnectionDB c=new ConnectionDB();
-//        c.conectarDB();
-//    }
 }
