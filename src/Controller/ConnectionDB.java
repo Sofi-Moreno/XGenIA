@@ -24,7 +24,7 @@ public class ConnectionDB {
     private String db = "x-genia";
     private String url = "jdbc:mysql://localhost:3306/"+db;
     private String user = "root";
-    private String pass = "23082018";
+    private String pass = "arturo12";
     
     
     public ConnectionDB(){
