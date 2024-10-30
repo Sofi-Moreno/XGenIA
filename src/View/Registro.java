@@ -76,6 +76,7 @@ public class Registro extends javax.swing.JFrame {
         jLabel3.setText("                  CREA TU CUENTA ");
 
         botonVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/volver.png"))); // NOI18N
+        botonVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonVolverMouseClicked(evt);
@@ -90,7 +91,7 @@ public class Registro extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -146,6 +147,7 @@ public class Registro extends javax.swing.JFrame {
 
         botonEmpleado.setBackground(new java.awt.Color(255, 153, 204));
         botonEmpleado.setForeground(new java.awt.Color(255, 153, 204));
+        botonEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonEmpleadoMouseClicked(evt);
@@ -175,6 +177,7 @@ public class Registro extends javax.swing.JFrame {
 
         botonCliente.setBackground(new java.awt.Color(255, 153, 204));
         botonCliente.setForeground(new java.awt.Color(255, 153, 204));
+        botonCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonClienteMouseClicked(evt);
@@ -255,7 +258,7 @@ public class Registro extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
 
         pack();
