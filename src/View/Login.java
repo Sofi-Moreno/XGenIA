@@ -303,8 +303,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_userTxtMousePressed
 
     private void botonCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCrearMouseClicked
-        Registro ventana= new Registro();
-        ventana.setVisible(true);
+        Registro registro= new Registro();
+        registro.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonCrearMouseClicked
 
