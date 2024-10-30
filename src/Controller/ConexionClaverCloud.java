@@ -9,7 +9,7 @@ public class ConexionClaverCloud {
     public static void main(String[] args) {
         try {
             // Cargar el driver JDBC
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Crear la conexión
             String url = "jdbc:mysql://uuq8ibvppiscjmq9:1JmUFsE2SGaXVSOxOCSF@bawo7zlm1ztu7a3lplyi-mysql.services.clever-cloud.com:3306/bawo7zlm1ztu7a3lplyi";
