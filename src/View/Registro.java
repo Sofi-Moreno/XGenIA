@@ -5,6 +5,7 @@
 package View;
 
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,6 +18,8 @@ public class Registro extends javax.swing.JFrame {
      */
     public Registro() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        this.setResizable(false);
         
     }
 

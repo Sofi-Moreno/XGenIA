@@ -5,6 +5,7 @@
 package View;
 
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,6 +18,8 @@ public class CreacionEmpleado extends javax.swing.JFrame {
      */
     public CreacionEmpleado() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        this.setResizable(false);
     }
 
     /**

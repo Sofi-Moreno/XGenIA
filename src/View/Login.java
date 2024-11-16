@@ -5,6 +5,7 @@
 package View;
 
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 
 
@@ -19,6 +20,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        this.setResizable(false);
     }
 
     /**
