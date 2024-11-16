@@ -28,6 +28,7 @@ public class CreacionCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -48,6 +49,8 @@ public class CreacionCliente extends javax.swing.JFrame {
         passTxt = new javax.swing.JPasswordField();
         botonVolver = new javax.swing.JLabel();
         tituloLabel = new javax.swing.JLabel();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -436,6 +439,7 @@ public class CreacionCliente extends javax.swing.JFrame {
     private javax.swing.JPanel botonGuardar;
     private javax.swing.JLabel botonVolver;
     private javax.swing.JLabel entrarLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;

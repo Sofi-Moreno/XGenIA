@@ -6,45 +6,25 @@ package Controller;
 
 import Model.Usuario;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Sofia Moreno
+ * @author Sofia Moreno y Ricardo Barrios
  */ 
-public class Controlador implements ActionListener, MouseListener{
+public class Controlador {
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-    }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        
-    }
+    
     
 }

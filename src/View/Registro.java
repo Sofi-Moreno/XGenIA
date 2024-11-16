@@ -163,6 +163,12 @@ public class Registro extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonEmpleadoMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonEmpleadoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonEmpleadoMouseExited(evt);
+            }
         });
 
         jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
@@ -192,6 +198,12 @@ public class Registro extends javax.swing.JFrame {
         botonCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonClienteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonClienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonClienteMouseExited(evt);
             }
         });
 
@@ -300,6 +312,22 @@ public class Registro extends javax.swing.JFrame {
     private void botonVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverMouseExited
         botonVolver.setBackground(new Color(255, 153, 204));
     }//GEN-LAST:event_botonVolverMouseExited
+
+    private void botonEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEmpleadoMouseEntered
+        botonEmpleado.setBackground(Color.pink);
+    }//GEN-LAST:event_botonEmpleadoMouseEntered
+
+    private void botonEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEmpleadoMouseExited
+        botonEmpleado.setBackground(new Color(255, 153, 204));
+    }//GEN-LAST:event_botonEmpleadoMouseExited
+
+    private void botonClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonClienteMouseExited
+        botonCliente.setBackground(new Color(255, 153, 204));
+    }//GEN-LAST:event_botonClienteMouseExited
+
+    private void botonClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonClienteMouseEntered
+        botonCliente.setBackground(Color.pink);
+    }//GEN-LAST:event_botonClienteMouseEntered
 
     /**
      * @param args the command line arguments
