@@ -4,8 +4,16 @@
  */
 package View;
 
+import Controller.ControllerUser;
+import Model.Usuario;
+import View.MainMenu;
 import java.awt.Color;
+import java.sql.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 
 
@@ -14,7 +22,8 @@ import javax.swing.ImageIcon;
  * @author Riarb
  */
 public class Login extends javax.swing.JFrame {
-
+    private Usuario usuarioActual;
+    private ControllerUser controller;
     /**
      * Creates new form Login
      */
@@ -22,6 +31,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("")).getImage());
         this.setResizable(false);
+        controller = new ControllerUser(this,userTxt,passTxt);
     }
 
     /**
@@ -296,7 +306,17 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_passTxtActionPerformed
 
     private void botonEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseClicked
-        // TODO add your handling code here:
+        usuarioActual = new Usuario();
+        if(controller.validarUsuario(usuarioActual)){
+            JOptionPane.showMessageDialog(null, "El usuario que desea ingresar no existe en nuestro sistema, ingreselo nuevamente.");
+        }else if(controller.validarcontraseña(usuarioActual)){
+            JOptionPane.showMessageDialog(null, "La contraseña ingresada no coincide con el usuario, ingresela nuevamente.");
+        }else{
+            controller.iniciarSesion(usuarioActual);
+            MainMenu menu = new MainMenu(usuarioActual);
+            menu.setVisible(true);
+            this.setVisible(false);
+        }           
     }//GEN-LAST:event_botonEntrarMouseClicked
 
     private void botonEntrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseEntered

@@ -4,6 +4,7 @@
  */
 package View;
 
+import Model.Usuario;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
@@ -12,14 +13,15 @@ import javax.swing.ImageIcon;
  * @author Riarb
  */
 public class MainMenu extends javax.swing.JFrame {
-
+    private static Usuario usuarioActual;
     /**
      * Creates new form MainMenu
      */
-    public MainMenu() {
+    public MainMenu(Usuario usuario) {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("")).getImage());
         this.setResizable(false);
+        usuarioActual = usuario;
     }
 
     /**
@@ -41,6 +43,9 @@ public class MainMenu extends javax.swing.JFrame {
         gestionarButtom = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        perfilButtom = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,7 +68,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116))
+                .addGap(168, 168, 168))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,6 +79,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         comprarButtom.setBackground(new java.awt.Color(255, 153, 204));
+        comprarButtom.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comprarButtom.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comprarButtomMouseClicked(evt);
@@ -116,6 +122,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         gestionarButtom.setBackground(new java.awt.Color(255, 153, 204));
+        gestionarButtom.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestionarButtom.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 gestionarButtomMouseClicked(evt);
@@ -158,31 +165,77 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
+        perfilButtom.setBackground(new java.awt.Color(255, 153, 204));
+        perfilButtom.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        perfilButtom.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                perfilButtomMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                perfilButtomMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                perfilButtomMouseExited(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Roboto Black", 0, 36)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("MI PERFIL");
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CONFIG.png"))); // NOI18N
+
+        javax.swing.GroupLayout perfilButtomLayout = new javax.swing.GroupLayout(perfilButtom);
+        perfilButtom.setLayout(perfilButtomLayout);
+        perfilButtomLayout.setHorizontalGroup(
+            perfilButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(perfilButtomLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jLabel9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, perfilButtomLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(31, 31, 31))
+        );
+        perfilButtomLayout.setVerticalGroup(
+            perfilButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(perfilButtomLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(gestionarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comprarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(perfilButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gestionarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comprarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comprarButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(gestionarButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(perfilButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 610, 490));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 710, 490));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/una ciudad minimalista en estilo de dibujo con color rosa en dimensiones de 150x150.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -211,11 +264,15 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_comprarButtomMouseExited
 
     private void comprarButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comprarButtomMouseClicked
-        // TODO add your handling code here:
+        ComprarMenu ventana = new ComprarMenu();
+        ventana.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_comprarButtomMouseClicked
 
     private void gestionarButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarButtomMouseClicked
-        // TODO add your handling code here:
+        Gestor ventana = new Gestor();
+        ventana.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_gestionarButtomMouseClicked
 
     private void gestionarButtomMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarButtomMouseEntered
@@ -225,6 +282,20 @@ public class MainMenu extends javax.swing.JFrame {
     private void gestionarButtomMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarButtomMouseExited
         gestionarButtom.setBackground(new Color(255, 153, 204));
     }//GEN-LAST:event_gestionarButtomMouseExited
+
+    private void perfilButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perfilButtomMouseClicked
+        miPerfil ventana = new miPerfil();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_perfilButtomMouseClicked
+
+    private void perfilButtomMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perfilButtomMouseEntered
+        perfilButtom.setBackground(Color.pink);
+    }//GEN-LAST:event_perfilButtomMouseEntered
+
+    private void perfilButtomMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perfilButtomMouseExited
+        perfilButtom.setBackground(new Color(255, 153, 204));
+    }//GEN-LAST:event_perfilButtomMouseExited
 
     /**
      * @param args the command line arguments
@@ -256,22 +327,28 @@ public class MainMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu().setVisible(true);
+                new MainMenu(usuarioActual).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel comprarButtom;
+    private javax.swing.JPanel comprarButtom1;
     private javax.swing.JPanel gestionarButtom;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel perfilButtom;
     // End of variables declaration//GEN-END:variables
 }

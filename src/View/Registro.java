@@ -78,7 +78,7 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Roboto Black", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("                  CREA TU CUENTA ");
+        jLabel3.setText("CREA TU CUENTA ");
 
         botonVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/volver.png"))); // NOI18N
         botonVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -101,9 +101,9 @@ public class Registro extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addGap(121, 121, 121)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,13 +297,13 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVolverMouseClicked
 
     private void botonEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEmpleadoMouseClicked
-        CreacionEmpleado empleado = new CreacionEmpleado();
+        CreacionUsuario empleado = new CreacionUsuario("Crea una cuenta como empleado");
         empleado.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonEmpleadoMouseClicked
 
     private void botonClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonClienteMouseClicked
-        CreacionCliente cliente = new CreacionCliente();
+        CreacionUsuario cliente = new CreacionUsuario("Crea una cuenta como cliente");
         cliente.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonClienteMouseClicked

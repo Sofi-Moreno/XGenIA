@@ -9,51 +9,19 @@ package Model;
  * @author Sofia Moreno
  */
 public class Usuario {
-    private String nombre;
-    private String apellido;
-    private String usuario;
-    private String contraseña;
-    protected boolean acceso;
-
-//    public static void main(String[] args){
-//        Usuario us = new Usuario();
-//        us.setNombre("Ricardo");
-//        us.setApellido("Barrios");
-//        us.setUsuario("rabarrios");
-//        us.setContraseña("w4r5g");
-//        us.imprimirUsuario();
-//    }
+    private String nombre,apellido,usuario,contraseña;
+    private int idUsuario;
+    private boolean acceso;
     
     public Usuario(){
         nombre = "";
         apellido = "";
         usuario = "";
-        contraseña="";
-        acceso=false;
-        System.out.println("Usuario creado con exito.");
+        contraseña = "";
+        idUsuario =0;
+        acceso = false;
     }
 
-    public Usuario(String nombre, String apellido, String usuario, String contraseña, boolean acceso) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.usuario = usuario;
-        this.contraseña = contraseña;
-        this.acceso = acceso;
-        System.out.println("Usuario creado con exito.");
-    }
-    
-    public void imprimirUsuario(){
-        System.out.println(usuario);
-        System.out.println(contraseña);
-        System.out.println(nombre);
-        System.out.println(apellido);
-    }
-    
-    public void registrarUsuario(){
-        
-    }
-    
-    
     public String getNombre() {
         return nombre;
     }
@@ -86,6 +54,14 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int id_usuario) {
+        this.idUsuario = id_usuario;
+    }
+    
     public boolean isAcceso() {
         return acceso;
     }

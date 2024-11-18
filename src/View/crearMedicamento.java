@@ -5,6 +5,8 @@
 package View;
 
 import java.awt.Color;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,43 +33,30 @@ public class crearMedicamento extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        userTxt = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        nombreTxt = new javax.swing.JTextField();
+        codigoLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
-        userTxt1 = new javax.swing.JTextField();
+        nombreLabel = new javax.swing.JLabel();
+        fechaTxt = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel6 = new javax.swing.JLabel();
-        userTxt2 = new javax.swing.JTextField();
+        loteLabel = new javax.swing.JLabel();
+        loteTxt = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
-        userTxt3 = new javax.swing.JTextField();
+        costoLabel = new javax.swing.JLabel();
+        costoTxt = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        jLabel8 = new javax.swing.JLabel();
-        userTxt4 = new javax.swing.JTextField();
+        unidadesLabel = new javax.swing.JLabel();
+        unidadesTxt = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
-        userTxt6 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        codigoTxt = new javax.swing.JTextField();
+        fechaLabel = new javax.swing.JLabel();
+        vigenciaLabel = new javax.swing.JLabel();
         userTxt7 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        userTxt9 = new javax.swing.JTextField();
-        jSeparator10 = new javax.swing.JSeparator();
-        jLabel14 = new javax.swing.JLabel();
-        userTxt10 = new javax.swing.JTextField();
-        jSeparator11 = new javax.swing.JSeparator();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jSeparator12 = new javax.swing.JSeparator();
-        userTxt11 = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
+        vigenciaBox = new javax.swing.JComboBox<>();
+        guardarButtom = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,128 +71,142 @@ public class crearMedicamento extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("CREADOR DE MEDICAMENTOS");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/volver.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel3)
-                .addGap(95, 95, 95))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(39, 39, 39))))
         );
 
-        userTxt.setBackground(new java.awt.Color(255, 204, 204));
-        userTxt.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        userTxt.setForeground(new java.awt.Color(153, 153, 153));
-        userTxt.setText("Ingrese el nombre del medicamento");
-        userTxt.setToolTipText("");
-        userTxt.setBorder(null);
-        userTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+        nombreTxt.setBackground(new java.awt.Color(255, 204, 204));
+        nombreTxt.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        nombreTxt.setForeground(new java.awt.Color(153, 153, 153));
+        nombreTxt.setText("Ingrese el nombre del medicamento");
+        nombreTxt.setToolTipText("");
+        nombreTxt.setBorder(null);
+        nombreTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTxtMousePressed(evt);
+                nombreTxtMousePressed(evt);
             }
         });
-        userTxt.addActionListener(new java.awt.event.ActionListener() {
+        nombreTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxtActionPerformed(evt);
+                nombreTxtActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel4.setText("CODIGO");
+        codigoLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        codigoLabel.setText("CODIGO");
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel5.setText("NOMBRE");
+        nombreLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        nombreLabel.setText("NOMBRE");
 
-        userTxt1.setBackground(new java.awt.Color(255, 204, 204));
-        userTxt1.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        userTxt1.setForeground(new java.awt.Color(153, 153, 153));
-        userTxt1.setText("--/----");
-        userTxt1.setToolTipText("");
-        userTxt1.setBorder(null);
-        userTxt1.addMouseListener(new java.awt.event.MouseAdapter() {
+        fechaTxt.setBackground(new java.awt.Color(255, 204, 204));
+        fechaTxt.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        fechaTxt.setForeground(new java.awt.Color(153, 153, 153));
+        fechaTxt.setText("--/----");
+        fechaTxt.setToolTipText("");
+        fechaTxt.setBorder(null);
+        fechaTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTxt1MousePressed(evt);
+                fechaTxtMousePressed(evt);
             }
         });
-        userTxt1.addActionListener(new java.awt.event.ActionListener() {
+        fechaTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt1ActionPerformed(evt);
+                fechaTxtActionPerformed(evt);
             }
         });
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel6.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel6.setText("LOTE");
+        loteLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        loteLabel.setText("LOTE");
 
-        userTxt2.setBackground(new java.awt.Color(255, 204, 204));
-        userTxt2.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        userTxt2.setForeground(new java.awt.Color(153, 153, 153));
-        userTxt2.setText("Ingrese el numero de lote");
-        userTxt2.setToolTipText("");
-        userTxt2.setBorder(null);
-        userTxt2.addMouseListener(new java.awt.event.MouseAdapter() {
+        loteTxt.setBackground(new java.awt.Color(255, 204, 204));
+        loteTxt.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        loteTxt.setForeground(new java.awt.Color(153, 153, 153));
+        loteTxt.setText("Ingrese el numero de lote");
+        loteTxt.setToolTipText("");
+        loteTxt.setBorder(null);
+        loteTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTxt2MousePressed(evt);
+                loteTxtMousePressed(evt);
             }
         });
-        userTxt2.addActionListener(new java.awt.event.ActionListener() {
+        loteTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt2ActionPerformed(evt);
+                loteTxtActionPerformed(evt);
             }
         });
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel7.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel7.setText("COSTO INICIAL");
+        costoLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        costoLabel.setText("COSTO INICIAL");
 
-        userTxt3.setBackground(new java.awt.Color(255, 204, 204));
-        userTxt3.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        userTxt3.setForeground(new java.awt.Color(153, 153, 153));
-        userTxt3.setText("Ingrese el costo inicial");
-        userTxt3.setToolTipText("");
-        userTxt3.setBorder(null);
-        userTxt3.addMouseListener(new java.awt.event.MouseAdapter() {
+        costoTxt.setBackground(new java.awt.Color(255, 204, 204));
+        costoTxt.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        costoTxt.setForeground(new java.awt.Color(153, 153, 153));
+        costoTxt.setText("Ingrese el costo inicial");
+        costoTxt.setToolTipText("");
+        costoTxt.setBorder(null);
+        costoTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTxt3MousePressed(evt);
+                costoTxtMousePressed(evt);
             }
         });
-        userTxt3.addActionListener(new java.awt.event.ActionListener() {
+        costoTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt3ActionPerformed(evt);
+                costoTxtActionPerformed(evt);
             }
         });
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel8.setText("UNIDADES EXISTENTES");
+        unidadesLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        unidadesLabel.setText("UNIDADES EXISTENTES");
 
-        userTxt4.setBackground(new java.awt.Color(255, 204, 204));
-        userTxt4.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        userTxt4.setForeground(new java.awt.Color(153, 153, 153));
-        userTxt4.setText("Ingrese las unidades existentes");
-        userTxt4.setToolTipText("");
-        userTxt4.setBorder(null);
-        userTxt4.addMouseListener(new java.awt.event.MouseAdapter() {
+        unidadesTxt.setBackground(new java.awt.Color(255, 204, 204));
+        unidadesTxt.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        unidadesTxt.setForeground(new java.awt.Color(153, 153, 153));
+        unidadesTxt.setText("Ingrese las unidades existentes");
+        unidadesTxt.setToolTipText("");
+        unidadesTxt.setBorder(null);
+        unidadesTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTxt4MousePressed(evt);
+                unidadesTxtMousePressed(evt);
             }
         });
-        userTxt4.addActionListener(new java.awt.event.ActionListener() {
+        unidadesTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt4ActionPerformed(evt);
+                unidadesTxtActionPerformed(evt);
             }
         });
 
@@ -211,28 +214,28 @@ public class crearMedicamento extends javax.swing.JFrame {
 
         jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
 
-        userTxt6.setBackground(new java.awt.Color(255, 204, 204));
-        userTxt6.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        userTxt6.setForeground(new java.awt.Color(153, 153, 153));
-        userTxt6.setText("Ingrese el codigo del medicamento");
-        userTxt6.setToolTipText("");
-        userTxt6.setBorder(null);
-        userTxt6.addMouseListener(new java.awt.event.MouseAdapter() {
+        codigoTxt.setBackground(new java.awt.Color(255, 204, 204));
+        codigoTxt.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        codigoTxt.setForeground(new java.awt.Color(153, 153, 153));
+        codigoTxt.setText("Ingrese el codigo del medicamento");
+        codigoTxt.setToolTipText("");
+        codigoTxt.setBorder(null);
+        codigoTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTxt6MousePressed(evt);
+                codigoTxtMousePressed(evt);
             }
         });
-        userTxt6.addActionListener(new java.awt.event.ActionListener() {
+        codigoTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt6ActionPerformed(evt);
+                codigoTxtActionPerformed(evt);
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel10.setText("FECHA DE VENCIMIENTO");
+        fechaLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        fechaLabel.setText("FECHA DE VENCIMIENTO");
 
-        jLabel11.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel11.setText("VIGENCIA");
+        vigenciaLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        vigenciaLabel.setText("VIGENCIA");
 
         userTxt7.setBackground(new java.awt.Color(255, 204, 204));
         userTxt7.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
@@ -250,138 +253,46 @@ public class crearMedicamento extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel12.setText("REFRIGERACIÓN");
-
-        jLabel13.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel13.setText("TEMPERATURA MAX");
-
-        userTxt9.setBackground(new java.awt.Color(255, 204, 204));
-        userTxt9.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        userTxt9.setForeground(new java.awt.Color(153, 153, 153));
-        userTxt9.setText("Ingrese la temperatura maxima");
-        userTxt9.setToolTipText("");
-        userTxt9.setBorder(null);
-        userTxt9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTxt9MousePressed(evt);
-            }
-        });
-        userTxt9.addActionListener(new java.awt.event.ActionListener() {
+        vigenciaBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        vigenciaBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt9ActionPerformed(evt);
+                vigenciaBoxActionPerformed(evt);
             }
         });
 
-        jSeparator10.setForeground(new java.awt.Color(0, 0, 0));
-
-        jLabel14.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel14.setText("TEMPERATURA MIN");
-
-        userTxt10.setBackground(new java.awt.Color(255, 204, 204));
-        userTxt10.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        userTxt10.setForeground(new java.awt.Color(153, 153, 153));
-        userTxt10.setText("Ingrese el maximo tiempo que puede estar abierto");
-        userTxt10.setToolTipText("");
-        userTxt10.setBorder(null);
-        userTxt10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTxt10MousePressed(evt);
+        guardarButtom.setBackground(new java.awt.Color(255, 153, 204));
+        guardarButtom.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarButtomMouseClicked(evt);
             }
-        });
-        userTxt10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt10ActionPerformed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                guardarButtomMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                guardarButtomMouseExited(evt);
             }
         });
 
-        jSeparator11.setForeground(new java.awt.Color(0, 0, 0));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jPanel2.setBackground(new java.awt.Color(255, 153, 204));
-
-        jLabel1.setText("SI");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 6, Short.MAX_VALUE))
-        );
-
-        jPanel4.setBackground(new java.awt.Color(255, 153, 204));
-
-        jLabel9.setText("NO");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel9)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        jSeparator12.setForeground(new java.awt.Color(0, 0, 0));
-
-        userTxt11.setBackground(new java.awt.Color(255, 204, 204));
-        userTxt11.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        userTxt11.setForeground(new java.awt.Color(153, 153, 153));
-        userTxt11.setText("Ingrese la temperatura minima");
-        userTxt11.setToolTipText("");
-        userTxt11.setBorder(null);
-        userTxt11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTxt11MousePressed(evt);
-            }
-        });
-        userTxt11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt11ActionPerformed(evt);
-            }
-        });
-
-        jPanel5.setBackground(new java.awt.Color(255, 153, 204));
-
+        jLabel15.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("GUARDAR");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+        javax.swing.GroupLayout guardarButtomLayout = new javax.swing.GroupLayout(guardarButtom);
+        guardarButtom.setLayout(guardarButtomLayout);
+        guardarButtomLayout.setHorizontalGroup(
+            guardarButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(guardarButtomLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addComponent(jLabel15)
-                .addGap(30, 30, 30))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addGap(15, 15, 15))
+        guardarButtomLayout.setVerticalGroup(
+            guardarButtomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guardarButtomLayout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-
-        jLabel16.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel16.setText("MAXIMO TIEMPO ABIERTO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -391,137 +302,98 @@ public class crearMedicamento extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userTxt4)
+                    .addComponent(unidadesTxt)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(userTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(unidadesLabel)
+                            .addComponent(costoLabel)
+                            .addComponent(loteLabel)
+                            .addComponent(loteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
+                            .addComponent(nombreLabel)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(userTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(codigoLabel)
+                            .addComponent(nombreTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(userTxt3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(costoTxt, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
                             .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userTxt6, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(codigoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(userTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userTxt7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(userTxt9, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(userTxt11, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel16)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jSeparator11, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(userTxt10, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(34, 34, 34))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(vigenciaLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(userTxt7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fechaLabel)
+                            .addComponent(fechaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(vigenciaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(176, 176, 176))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(guardarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(199, 199, 199))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codigoLabel)
+                    .addComponent(fechaLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codigoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaTxt))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSeparator7)
+                    .addComponent(jSeparator1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombreLabel)
+                            .addComponent(vigenciaLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nombreTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(userTxt7, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(vigenciaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loteLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(costoLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(costoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(unidadesLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userTxt6, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userTxt3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userTxt4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(unidadesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userTxt7, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel12)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(userTxt9, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel16))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(userTxt11, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userTxt10, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addComponent(guardarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 690, 490));
@@ -533,58 +405,193 @@ public class crearMedicamento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxtMousePressed
-        if (userTxt.getText().equals("Ingrese su nombre de usuario")){
-            userTxt.setText("");
-            userTxt.setForeground(Color.black);
+    private void nombreTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreTxtMousePressed
+        if (nombreTxt.getText().equals("Ingrese el nombre del medicamento")){
+            nombreTxt.setText("");
+            nombreTxt.setForeground(Color.black);
+        }
+        if (codigoTxt.getText().isEmpty()){
+            codigoTxt.setText("Ingrese el codigo del medicamento");
+            codigoTxt.setForeground(new Color(153,153,153));
+        }
+        if (loteTxt.getText().isEmpty()){
+            loteTxt.setText("Ingrese el numero de lote");
+            loteTxt.setForeground(new Color(153,153,153));
+        }
+        if (costoTxt.getText().isEmpty()){
+            costoTxt.setText("Ingrese el costo inicial");
+            costoTxt.setForeground(new Color(153,153,153));
+        }
+        if (unidadesTxt.getText().isEmpty()){
+            unidadesTxt.setText("Ingrese las unidades existentes");
+            unidadesTxt.setForeground(new Color(153,153,153));
+        }
+        if (fechaTxt.getText().isEmpty()){
+            fechaTxt.setText("--/----");
+            fechaTxt.setForeground(new Color(153,153,153));
         }
         
 
-    }//GEN-LAST:event_userTxtMousePressed
+    }//GEN-LAST:event_nombreTxtMousePressed
 
-    private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed
+    private void nombreTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTxtActionPerformed
+    }//GEN-LAST:event_nombreTxtActionPerformed
 
-    private void userTxt1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxt1MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt1MousePressed
+    private void fechaTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaTxtMousePressed
+        if (fechaTxt.getText().equals("--/----")){
+            fechaTxt.setText("");
+            fechaTxt.setForeground(Color.black);
+        }
+        if (codigoTxt.getText().isEmpty()){
+            codigoTxt.setText("Ingrese el codigo del medicamento");
+            codigoTxt.setForeground(new Color(153,153,153));
+        }
+        if (nombreTxt.getText().isEmpty()){
+            nombreTxt.setText("Ingrese el nombre del medicamento");
+            nombreTxt.setForeground(new Color(153,153,153));
+        }
+        if (costoTxt.getText().isEmpty()){
+            costoTxt.setText("Ingrese el costo inicial");
+            costoTxt.setForeground(new Color(153,153,153));
+        }
+        if (unidadesTxt.getText().isEmpty()){
+            unidadesTxt.setText("Ingrese las unidades existentes");
+            unidadesTxt.setForeground(new Color(153,153,153));
+        }
+        if (loteTxt.getText().isEmpty()){
+            loteTxt.setText("Ingrese el numero de lote");
+            loteTxt.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_fechaTxtMousePressed
 
-    private void userTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt1ActionPerformed
+    private void fechaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt1ActionPerformed
+    }//GEN-LAST:event_fechaTxtActionPerformed
 
-    private void userTxt2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxt2MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt2MousePressed
+    private void loteTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loteTxtMousePressed
+        if (loteTxt.getText().equals("Ingrese el numero de lote")){
+            loteTxt.setText("");
+            loteTxt.setForeground(Color.black);
+        }
+        if (codigoTxt.getText().isEmpty()){
+            codigoTxt.setText("Ingrese el codigo del medicamento");
+            codigoTxt.setForeground(new Color(153,153,153));
+        }
+        if (nombreTxt.getText().isEmpty()){
+            nombreTxt.setText("Ingrese el nombre del medicamento");
+            nombreTxt.setForeground(new Color(153,153,153));
+        }
+        if (costoTxt.getText().isEmpty()){
+            costoTxt.setText("Ingrese el costo inicial");
+            costoTxt.setForeground(new Color(153,153,153));
+        }
+        if (unidadesTxt.getText().isEmpty()){
+            unidadesTxt.setText("Ingrese las unidades existentes");
+            unidadesTxt.setForeground(new Color(153,153,153));
+        }
+        if (fechaTxt.getText().isEmpty()){
+            fechaTxt.setText("--/----");
+            fechaTxt.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_loteTxtMousePressed
 
-    private void userTxt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt2ActionPerformed
+    private void loteTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loteTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt2ActionPerformed
+    }//GEN-LAST:event_loteTxtActionPerformed
 
-    private void userTxt3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxt3MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt3MousePressed
+    private void costoTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_costoTxtMousePressed
+        if (costoTxt.getText().equals("Ingrese el costo inicial")){
+            costoTxt.setText("");
+            costoTxt.setForeground(Color.black);
+        }
+        if (codigoTxt.getText().isEmpty()){
+            codigoTxt.setText("Ingrese el codigo del medicamento");
+            codigoTxt.setForeground(new Color(153,153,153));
+        }
+        if (nombreTxt.getText().isEmpty()){
+            nombreTxt.setText("Ingrese el nombre del medicamento");
+            nombreTxt.setForeground(new Color(153,153,153));
+        }
+        if (loteTxt.getText().isEmpty()){
+            loteTxt.setText("Ingrese el numero de lote");
+            loteTxt.setForeground(new Color(153,153,153));
+        }
+        if (unidadesTxt.getText().isEmpty()){
+            unidadesTxt.setText("Ingrese las unidades existentes");
+            unidadesTxt.setForeground(new Color(153,153,153));
+        }
+        if (fechaTxt.getText().isEmpty()){
+            fechaTxt.setText("--/----");
+            fechaTxt.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_costoTxtMousePressed
 
-    private void userTxt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt3ActionPerformed
+    private void costoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_costoTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt3ActionPerformed
+    }//GEN-LAST:event_costoTxtActionPerformed
 
-    private void userTxt4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxt4MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt4MousePressed
+    private void unidadesTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unidadesTxtMousePressed
+        if (unidadesTxt.getText().equals("Ingrese las unidades existentes")){
+            unidadesTxt.setText("");
+            unidadesTxt.setForeground(Color.black);
+        }
+        if (codigoTxt.getText().isEmpty()){
+            codigoTxt.setText("Ingrese el codigo del medicamento");
+            codigoTxt.setForeground(new Color(153,153,153));
+        }
+        if (nombreTxt.getText().isEmpty()){
+            nombreTxt.setText("Ingrese el nombre del medicamento");
+            nombreTxt.setForeground(new Color(153,153,153));
+        }
+        if (loteTxt.getText().isEmpty()){
+            loteTxt.setText("Ingrese el numero de lote");
+            loteTxt.setForeground(new Color(153,153,153));
+        }
+        if (costoTxt.getText().isEmpty()){
+            costoTxt.setText("Ingrese el costo inicial");
+            costoTxt.setForeground(new Color(153,153,153));
+        }
+        if (fechaTxt.getText().isEmpty()){
+            fechaTxt.setText("--/----");
+            fechaTxt.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_unidadesTxtMousePressed
 
-    private void userTxt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt4ActionPerformed
+    private void unidadesTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unidadesTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt4ActionPerformed
+    }//GEN-LAST:event_unidadesTxtActionPerformed
 
-    private void userTxt6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxt6MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt6MousePressed
+    private void codigoTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_codigoTxtMousePressed
+        if (codigoTxt.getText().equals("Ingrese el codigo del medicamento")){
+            codigoTxt.setText("");
+            codigoTxt.setForeground(Color.black);
+        }
+        if (nombreTxt.getText().isEmpty()){
+            nombreTxt.setText("Ingrese el nombre del medicamento");
+            nombreTxt.setForeground(new Color(153,153,153));
+        }
+        if (loteTxt.getText().isEmpty()){
+            loteTxt.setText("Ingrese el numero de lote");
+            loteTxt.setForeground(new Color(153,153,153));
+        }
+        if (costoTxt.getText().isEmpty()){
+            costoTxt.setText("Ingrese el costo inicial");
+            costoTxt.setForeground(new Color(153,153,153));
+        }
+        if (unidadesTxt.getText().isEmpty()){
+            unidadesTxt.setText("Ingrese las unidades existentes");
+            unidadesTxt.setForeground(new Color(153,153,153));
+        }
+        if (fechaTxt.getText().isEmpty()){
+            fechaTxt.setText("--/----");
+            fechaTxt.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_codigoTxtMousePressed
 
-    private void userTxt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt6ActionPerformed
+    private void codigoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt6ActionPerformed
+    }//GEN-LAST:event_codigoTxtActionPerformed
 
     private void userTxt7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxt7MousePressed
         // TODO add your handling code here:
@@ -594,29 +601,37 @@ public class crearMedicamento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userTxt7ActionPerformed
 
-    private void userTxt9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxt9MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt9MousePressed
+    private void guardarButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtomMouseClicked
+        int option = JOptionPane.showConfirmDialog( null, "REQUIERE REFRIGERACION?", "CREAR MEDICAMENTO", JOptionPane.YES_NO_OPTION );
+        if (option == JOptionPane.YES_OPTION) { 
+            Refrigerado ref = new Refrigerado();
+            ref.setVisible(true);
+            this.setVisible(false);
+            
+        } else if (option == JOptionPane.NO_OPTION) {
+            NoRefrigerado ref = new NoRefrigerado();
+            ref.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_guardarButtomMouseClicked
 
-    private void userTxt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt9ActionPerformed
+    private void guardarButtomMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtomMouseEntered
+        guardarButtom.setBackground(Color.pink);
+    }//GEN-LAST:event_guardarButtomMouseEntered
 
-    private void userTxt10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxt10MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt10MousePressed
+    private void guardarButtomMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtomMouseExited
+        guardarButtom.setBackground(new Color(255, 153, 204));
+    }//GEN-LAST:event_guardarButtomMouseExited
 
-    private void userTxt10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt10ActionPerformed
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        Gestor ventana = new Gestor();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void userTxt11MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxt11MousePressed
+    private void vigenciaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vigenciaBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt11MousePressed
-
-    private void userTxt11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt11ActionPerformed
+    }//GEN-LAST:event_vigenciaBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -654,46 +669,33 @@ public class crearMedicamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel codigoLabel;
+    private javax.swing.JTextField codigoTxt;
+    private javax.swing.JLabel costoLabel;
+    private javax.swing.JTextField costoTxt;
+    private javax.swing.JLabel fechaLabel;
+    private javax.swing.JTextField fechaTxt;
+    private javax.swing.JPanel guardarButtom;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator11;
-    private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextField userTxt;
-    private javax.swing.JTextField userTxt1;
-    private javax.swing.JTextField userTxt10;
-    private javax.swing.JTextField userTxt11;
-    private javax.swing.JTextField userTxt2;
-    private javax.swing.JTextField userTxt3;
-    private javax.swing.JTextField userTxt4;
-    private javax.swing.JTextField userTxt6;
+    private javax.swing.JLabel loteLabel;
+    private javax.swing.JTextField loteTxt;
+    private javax.swing.JLabel nombreLabel;
+    private javax.swing.JTextField nombreTxt;
+    private javax.swing.JLabel unidadesLabel;
+    private javax.swing.JTextField unidadesTxt;
     private javax.swing.JTextField userTxt7;
-    private javax.swing.JTextField userTxt9;
+    private javax.swing.JComboBox<String> vigenciaBox;
+    private javax.swing.JLabel vigenciaLabel;
     // End of variables declaration//GEN-END:variables
 }

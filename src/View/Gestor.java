@@ -5,6 +5,7 @@
 package View;
 
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,6 +18,8 @@ public class Gestor extends javax.swing.JFrame {
      */
     public Gestor() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        this.setResizable(false);
     }
 
     /**
@@ -31,6 +34,7 @@ public class Gestor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        volverButtom = new javax.swing.JLabel();
         gestionarButtom = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         gestionarButtom1 = new javax.swing.JPanel();
@@ -54,21 +58,35 @@ public class Gestor extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("GESTOR DE MEDICAMENTOS");
 
+        volverButtom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/volver.png"))); // NOI18N
+        volverButtom.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                volverButtomMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addComponent(volverButtom)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(95, 95, 95))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(volverButtom)
+                        .addGap(33, 33, 33))))
         );
 
         gestionarButtom.setBackground(new java.awt.Color(255, 153, 204));
@@ -255,7 +273,9 @@ public class Gestor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gestionarButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarButtomMouseClicked
-        // TODO add your handling code here:
+        crearMedicamento menu = new crearMedicamento();
+        menu.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_gestionarButtomMouseClicked
 
     private void gestionarButtomMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarButtomMouseEntered
@@ -301,6 +321,10 @@ public class Gestor extends javax.swing.JFrame {
     private void gestionarButtom3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarButtom3MouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_gestionarButtom3MouseExited
+
+    private void volverButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volverButtomMouseClicked
+        
+    }//GEN-LAST:event_volverButtomMouseClicked
 
     /**
      * @param args the command line arguments
@@ -351,5 +375,6 @@ public class Gestor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel volverButtom;
     // End of variables declaration//GEN-END:variables
 }
