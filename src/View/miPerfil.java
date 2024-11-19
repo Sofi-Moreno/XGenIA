@@ -4,6 +4,8 @@
  */
 package View;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Riarb
@@ -15,6 +17,8 @@ public class miPerfil extends javax.swing.JFrame {
      */
     public miPerfil() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
+        this.setResizable(false);
     }
 
     /**

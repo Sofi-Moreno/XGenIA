@@ -24,7 +24,7 @@ public class CreacionUsuario extends javax.swing.JFrame {
     public CreacionUsuario(String mensaje) {
         initComponents();
         tituloLabel.setText(mensaje);
-        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
         this.setResizable(false);
         controller = new ControllerUser(this,nombreTxt,apellidoTxt,userTxt,passTxt);
     }

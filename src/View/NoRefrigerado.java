@@ -6,6 +6,7 @@ package View;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +19,7 @@ public class NoRefrigerado extends javax.swing.JFrame {
      */
     public NoRefrigerado() {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
         this.setResizable(false);
     }
 
@@ -44,6 +45,8 @@ public class NoRefrigerado extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         guardarButtom = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
+        guardarButtom1 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,7 +98,7 @@ public class NoRefrigerado extends javax.swing.JFrame {
         almacenamientoTxt1.setBackground(new java.awt.Color(255, 204, 204));
         almacenamientoTxt1.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         almacenamientoTxt1.setForeground(new java.awt.Color(153, 153, 153));
-        almacenamientoTxt1.setText("Ingrese un lugar para almacenar el medicamento");
+        almacenamientoTxt1.setText("Ingrese un lugar donde no se debe almacenar el medicamento");
         almacenamientoTxt1.setToolTipText("");
         almacenamientoTxt1.setBorder(null);
         almacenamientoTxt1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,7 +117,7 @@ public class NoRefrigerado extends javax.swing.JFrame {
         almacenamientoTxt2.setBackground(new java.awt.Color(255, 204, 204));
         almacenamientoTxt2.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         almacenamientoTxt2.setForeground(new java.awt.Color(153, 153, 153));
-        almacenamientoTxt2.setText("Ingrese un lugar para almacenar el medicamento");
+        almacenamientoTxt2.setText("Ingrese un lugar donde no se debe almacenar el medicamento");
         almacenamientoTxt2.setToolTipText("");
         almacenamientoTxt2.setBorder(null);
         almacenamientoTxt2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -133,7 +136,7 @@ public class NoRefrigerado extends javax.swing.JFrame {
         almacenamientoTxt3.setBackground(new java.awt.Color(255, 204, 204));
         almacenamientoTxt3.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         almacenamientoTxt3.setForeground(new java.awt.Color(153, 153, 153));
-        almacenamientoTxt3.setText("Ingrese un lugar para almacenar el medicamento");
+        almacenamientoTxt3.setText("Ingrese un lugar donde no se debe almacenar el medicamento");
         almacenamientoTxt3.setToolTipText("");
         almacenamientoTxt3.setBorder(null);
         almacenamientoTxt3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -183,6 +186,40 @@ public class NoRefrigerado extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        guardarButtom1.setBackground(new java.awt.Color(255, 153, 204));
+        guardarButtom1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarButtom1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                guardarButtom1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                guardarButtom1MouseExited(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("VISTA PREVIA");
+
+        javax.swing.GroupLayout guardarButtom1Layout = new javax.swing.GroupLayout(guardarButtom1);
+        guardarButtom1.setLayout(guardarButtom1Layout);
+        guardarButtom1Layout.setHorizontalGroup(
+            guardarButtom1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guardarButtom1Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jLabel16)
+                .addGap(19, 19, 19))
+        );
+        guardarButtom1Layout.setVerticalGroup(
+            guardarButtom1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guardarButtom1Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -191,16 +228,19 @@ public class NoRefrigerado extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(almacenamientoTxt3, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(almacenamientoTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codigoLabel)
-                    .addComponent(almacenamientoTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(almacenamientoTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(almacenamientoTxt3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                        .addComponent(almacenamientoTxt2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(guardarButtom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(guardarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
@@ -224,7 +264,9 @@ public class NoRefrigerado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(guardarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(guardarButtom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardarButtom1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
 
@@ -238,16 +280,16 @@ public class NoRefrigerado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void almacenamientoTxt1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenamientoTxt1MousePressed
-        if (almacenamientoTxt1.getText().equals("Ingrese un lugar para almacenar el medicamento")){
+        if (almacenamientoTxt1.getText().equals("Ingrese un lugar donde no se debe almacenar el medicamento")){
             almacenamientoTxt1.setText("");
             almacenamientoTxt1.setForeground(Color.black);
         }
         if (almacenamientoTxt2.getText().isEmpty()){
-            almacenamientoTxt2.setText("Ingrese un lugar para almacenar el medicamento");
+            almacenamientoTxt2.setText("Ingrese un lugar donde no se debe almacenar el medicamento");
             almacenamientoTxt2.setForeground(new Color(153,153,153));
         }
         if (almacenamientoTxt3.getText().isEmpty()){
-            almacenamientoTxt3.setText("Ingrese un lugar para almacenar el medicamento");
+            almacenamientoTxt3.setText("Ingrese un lugar donde no se debe almacenar el medicamento");
             almacenamientoTxt3.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_almacenamientoTxt1MousePressed
@@ -257,16 +299,16 @@ public class NoRefrigerado extends javax.swing.JFrame {
     }//GEN-LAST:event_almacenamientoTxt1ActionPerformed
 
     private void almacenamientoTxt2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenamientoTxt2MousePressed
-        if (almacenamientoTxt2.getText().equals("Ingrese un lugar para almacenar el medicamento")){
+        if (almacenamientoTxt2.getText().equals("Ingrese un lugar donde no se debe almacenar el medicamento")){
             almacenamientoTxt2.setText("");
             almacenamientoTxt2.setForeground(Color.black);
         }
         if (almacenamientoTxt1.getText().isEmpty()){
-            almacenamientoTxt1.setText("Ingrese un lugar para almacenar el medicamento");
+            almacenamientoTxt1.setText("Ingrese un lugar donde no se debe almacenar el medicamento");
             almacenamientoTxt1.setForeground(new Color(153,153,153));
         }
         if (almacenamientoTxt3.getText().isEmpty()){
-            almacenamientoTxt3.setText("Ingrese un lugar para almacenar el medicamento");
+            almacenamientoTxt3.setText("Ingrese un lugar donde no se debe almacenar el medicamento");
             almacenamientoTxt3.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_almacenamientoTxt2MousePressed
@@ -276,16 +318,16 @@ public class NoRefrigerado extends javax.swing.JFrame {
     }//GEN-LAST:event_almacenamientoTxt2ActionPerformed
 
     private void almacenamientoTxt3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenamientoTxt3MousePressed
-        if (almacenamientoTxt3.getText().equals("Ingrese un lugar para almacenar el medicamento")){
+        if (almacenamientoTxt3.getText().equals("Ingrese un lugar donde no se debe almacenar el medicamento")){
             almacenamientoTxt3.setText("");
             almacenamientoTxt3.setForeground(Color.black);
         }
         if (almacenamientoTxt2.getText().isEmpty()){
-            almacenamientoTxt2.setText("Ingrese un lugar para almacenar el medicamento");
+            almacenamientoTxt2.setText("Ingrese un lugar donde no se debe almacenar el medicamento");
             almacenamientoTxt2.setForeground(new Color(153,153,153));
         }
         if (almacenamientoTxt1.getText().isEmpty()){
-            almacenamientoTxt1.setText("Ingrese un lugar para almacenar el medicamento");
+            almacenamientoTxt1.setText("Ingrese un lugar donde no se debe almacenar el medicamento");
             almacenamientoTxt1.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_almacenamientoTxt3MousePressed
@@ -295,6 +337,7 @@ public class NoRefrigerado extends javax.swing.JFrame {
     }//GEN-LAST:event_almacenamientoTxt3ActionPerformed
 
     private void guardarButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtomMouseClicked
+        JOptionPane.showMessageDialog(null, "El medicamento se ha registrado de manera exitosa", "AVISO", JOptionPane.INFORMATION_MESSAGE);
         crearMedicamento ventana = new crearMedicamento();
         ventana.setVisible(true);
         this.setVisible(false);
@@ -313,6 +356,19 @@ public class NoRefrigerado extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void guardarButtom1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtom1MouseClicked
+        VistaPrevia ventana = new VistaPrevia();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_guardarButtom1MouseClicked
+
+    private void guardarButtom1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtom1MouseEntered
+        guardarButtom1.setBackground(Color.pink);
+    }//GEN-LAST:event_guardarButtom1MouseEntered
+
+    private void guardarButtom1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtom1MouseExited
+        guardarButtom1.setBackground(new Color(255, 153, 204));
+    }//GEN-LAST:event_guardarButtom1MouseExited
 
     /**
      * @param args the command line arguments
@@ -355,8 +411,10 @@ public class NoRefrigerado extends javax.swing.JFrame {
     private javax.swing.JTextField almacenamientoTxt3;
     private javax.swing.JLabel codigoLabel;
     private javax.swing.JPanel guardarButtom;
+    private javax.swing.JPanel guardarButtom1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

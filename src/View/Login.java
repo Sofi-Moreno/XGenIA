@@ -29,7 +29,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
         this.setResizable(false);
         controller = new ControllerUser(this,userTxt,passTxt);
     }

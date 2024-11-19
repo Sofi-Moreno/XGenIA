@@ -6,19 +6,18 @@ package View;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Riarb
  */
-public class crearMedicamento extends javax.swing.JFrame {
+public class Modificador extends javax.swing.JFrame {
 
     /**
-     * Creates new form crearMedicamento
+     * Creates new form Modificador
      */
-    public crearMedicamento() {
+    public Modificador() {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
         this.setResizable(false);
@@ -75,7 +74,7 @@ public class crearMedicamento extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Roboto Black", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("CREADOR DE MEDICAMENTOS");
+        jLabel3.setText("MODIFICAR MEDICAMENTO");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/volver.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,7 +92,7 @@ public class crearMedicamento extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(47, 47, 47)
                 .addComponent(jLabel3)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,7 +329,7 @@ public class crearMedicamento extends javax.swing.JFrame {
                                 .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
                             .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(codigoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 40, Short.MAX_VALUE)))
+                        .addGap(0, 68, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -423,6 +422,12 @@ public class crearMedicamento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        ModificarMedicamento ventana = new ModificarMedicamento();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     private void nombreTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreTxtMousePressed
         if (nombreTxt.getText().equals("Ingrese el nombre del medicamento")){
             nombreTxt.setText("");
@@ -448,7 +453,6 @@ public class crearMedicamento extends javax.swing.JFrame {
             unidadesTxt1.setText("Ingrese las unidades vendidas");
             unidadesTxt1.setForeground(new Color(153,153,153));
         }
-        
 
     }//GEN-LAST:event_nombreTxtMousePressed
 
@@ -543,7 +547,6 @@ public class crearMedicamento extends javax.swing.JFrame {
             unidadesTxt1.setText("Ingrese las unidades vendidas");
             unidadesTxt1.setForeground(new Color(153,153,153));
         }
-
     }//GEN-LAST:event_unidadesTxtMousePressed
 
     private void unidadesTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unidadesTxtActionPerformed
@@ -581,13 +584,17 @@ public class crearMedicamento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_codigoTxtActionPerformed
 
+    private void vigenciaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vigenciaBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vigenciaBoxActionPerformed
+
     private void guardarButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtomMouseClicked
         int option = JOptionPane.showConfirmDialog( null, "REQUIERE REFRIGERACION?", "CREAR MEDICAMENTO", JOptionPane.YES_NO_OPTION );
-        if (option == JOptionPane.YES_OPTION) { 
+        if (option == JOptionPane.YES_OPTION) {
             Refrigerado ref = new Refrigerado();
             ref.setVisible(true);
             this.setVisible(false);
-            
+
         } else if (option == JOptionPane.NO_OPTION) {
             NoRefrigerado ref = new NoRefrigerado();
             ref.setVisible(true);
@@ -602,16 +609,6 @@ public class crearMedicamento extends javax.swing.JFrame {
     private void guardarButtomMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtomMouseExited
         guardarButtom.setBackground(new Color(255, 153, 204));
     }//GEN-LAST:event_guardarButtomMouseExited
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        Gestor ventana = new Gestor();
-        ventana.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void vigenciaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vigenciaBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_vigenciaBoxActionPerformed
 
     private void añoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añoBoxActionPerformed
         // TODO add your handling code here:
@@ -646,7 +643,7 @@ public class crearMedicamento extends javax.swing.JFrame {
             codigoTxt.setText("Ingrese el codigo del medicamento");
             codigoTxt.setForeground(new Color(153,153,153));
         }
-        
+
     }//GEN-LAST:event_unidadesTxt1MousePressed
 
     private void unidadesTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unidadesTxt1ActionPerformed
@@ -670,20 +667,20 @@ public class crearMedicamento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(crearMedicamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(crearMedicamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(crearMedicamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(crearMedicamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new crearMedicamento().setVisible(true);
+                new Modificador().setVisible(true);
             }
         });
     }

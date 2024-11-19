@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/X-GenIA/src/Model/MedicamentoNoRefrigerado.java</file>
-            <file>file:/C:/X-GenIA/src/Controller/ControllerMedicines.java</file>
-            <file>file:/C:/X-GenIA/src/Controller/ControllerUnrefrigeratedMedicines.java</file>
+            <file>file:/C:/Users/Riarb/OneDrive/Escritorio/XGenIA/src/View/VistaPrevia.java</file>
+            <file>file:/C:/Users/Riarb/OneDrive/Escritorio/XGenIA/src/View/crearMedicamento.java</file>
+            <file>file:/C:/Users/Riarb/OneDrive/Escritorio/XGenIA/src/View/VerMedicamento.java</file>
+            <file>file:/C:/Users/Riarb/OneDrive/Escritorio/XGenIA/src/View/VistaPreviaRef.java</file>
+            <file>file:/C:/Users/Riarb/OneDrive/Escritorio/XGenIA/src/View/miPerfil.java</file>
         </group>
     </open-files>
 </project-private>
