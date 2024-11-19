@@ -12,14 +12,12 @@ import java.util.List;
  */
 public class MedicamentoNoRefrigerado extends Medicamento{
     private List<String> noAlmacenar;
-    
-    public MedicamentoNoRefrigerado(){
-        super();
-        noAlmacenar.add("1. No Almacenar");
-        noAlmacenar.add("2. No Almacenar");
-        noAlmacenar.add("3. No Almacenar");
-    }
 
+    public MedicamentoNoRefrigerado(List<String> noAlmacenar, String codigoMedicamento, String nombreMedicamento, double costoMedicamento, double precioVenta, int unidadesVendidas, int unidadesExistentes, String fechaVencimiento, String numeroLote, String vigenciaMedicamento) {
+        super(codigoMedicamento, nombreMedicamento, costoMedicamento, precioVenta, unidadesVendidas, unidadesExistentes, fechaVencimiento, numeroLote, vigenciaMedicamento);
+        this.noAlmacenar = noAlmacenar;
+    }
+    
     public List<String> getNoAlmacenar() {
         return noAlmacenar;
     }

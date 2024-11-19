@@ -31,6 +31,20 @@ public class Medicamento {
         vigenciaMedicamento = "";
     }
 
+    public Medicamento(String codigoMedicamento, String nombreMedicamento, double costoMedicamento, double precioVenta, int unidadesVendidas, int unidadesExistentes, String fechaVencimiento, String numeroLote, String vigenciaMedicamento) {
+        this.codigoMedicamento = codigoMedicamento;
+        this.nombreMedicamento = nombreMedicamento;
+        this.costoMedicamento = costoMedicamento;
+        this.precioVenta = precioVenta;
+        this.unidadesVendidas = unidadesVendidas;
+        this.unidadesExistentes = unidadesExistentes;
+        this.fechaVencimiento = fechaVencimiento;
+        this.numeroLote = numeroLote;
+        this.vigenciaMedicamento = vigenciaMedicamento;
+    }
+    
+    
+
     public String getCodigoMedicamento() {
         return codigoMedicamento;
     }
