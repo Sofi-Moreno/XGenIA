@@ -11,18 +11,30 @@ package Model;
 public class MedicamentoRefrigerado extends Medicamento{
     private double temperaturaMaxima;
     private double temperaturaMinima;
-    private int tiempoAbierto;
-    private int tiempoExpuesto;
+    private String tiempoAbierto;
+    private String tiempoExpuesto;
     private double recargo;
 
-    public MedicamentoRefrigerado(String codigoMedicamento, String nombreMedicamento, double costoMedicamento, double precioVenta, int unidadesVendidas, int unidadesExistentes, String fechaVencimiento, String numeroLote, String vigenciaMedicamento,double temperaturaMaxima, double temperaturaMinima, int tiempoAbierto, int tiempoExpuesto, double recargo) {
-        super(codigoMedicamento,nombreMedicamento,costoMedicamento,precioVenta,unidadesVendidas,unidadesExistentes,fechaVencimiento,numeroLote,vigenciaMedicamento);
+    public MedicamentoRefrigerado(double temperaturaMaxima, double temperaturaMinima, String tiempoAbierto, String tiempoExpuesto, 
+            double recargo, String codigoMedicamento, String nombreMedicamento, double costoMedicamento, double precioVenta, 
+            int unidadesVendidas, int unidadesExistentes, String fechaVencimiento, String numeroLote, String vigenciaMedicamento) {
+        super(codigoMedicamento, nombreMedicamento, costoMedicamento, precioVenta, unidadesVendidas, unidadesExistentes, fechaVencimiento, numeroLote, vigenciaMedicamento);
         this.temperaturaMaxima = temperaturaMaxima;
         this.temperaturaMinima = temperaturaMinima;
         this.tiempoAbierto = tiempoAbierto;
         this.tiempoExpuesto = tiempoExpuesto;
         this.recargo = recargo;
     }
+
+    public MedicamentoRefrigerado(double temperaturaMaxima, double temperaturaMinima, String tiempoAbierto, String tiempoExpuesto, String codigoMedicamento, String nombreMedicamento, double costoMedicamento, double precioVenta, int unidadesVendidas, int unidadesExistentes, String fechaVencimiento, String numeroLote, String vigenciaMedicamento) {
+        super(codigoMedicamento, nombreMedicamento, costoMedicamento, precioVenta, unidadesVendidas, unidadesExistentes, fechaVencimiento, numeroLote, vigenciaMedicamento);
+        this.temperaturaMaxima = temperaturaMaxima;
+        this.temperaturaMinima = temperaturaMinima;
+        this.tiempoAbierto = tiempoAbierto;
+        this.tiempoExpuesto = tiempoExpuesto;
+    }
+
+    
     
     public double getTemperaturaMaxima() {
         return temperaturaMaxima;
@@ -40,21 +52,23 @@ public class MedicamentoRefrigerado extends Medicamento{
         this.temperaturaMinima = temperaturaMinima;
     }
 
-    public int getTiempoAbierto() {
+    public String getTiempoAbierto() {
         return tiempoAbierto;
     }
 
-    public void setTiempoAbierto(int tiempoAbierto) {
+    public void setTiempoAbierto(String tiempoAbierto) {
         this.tiempoAbierto = tiempoAbierto;
     }
 
-    public int getTiempoExpuesto() {
+    public String getTiempoExpuesto() {
         return tiempoExpuesto;
     }
 
-    public void setTiempoExpuesto(int tiempoExpuesto) {
+    public void setTiempoExpuesto(String tiempoExpuesto) {
         this.tiempoExpuesto = tiempoExpuesto;
     }
+
+    
 
     public double getRecargo() {
         return recargo;

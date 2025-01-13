@@ -4,22 +4,38 @@
  */
 package View;
 
+import Controller.ControllerRefrigeratedMedicines;
+import Model.MedicamentoNoRefrigerado;
+import Model.MedicamentoRefrigerado;
+import Model.Usuario;
 import java.awt.Color;
+import java.util.Map;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Riarb
  */
 public class Refrigerado extends javax.swing.JFrame {
-
+    private static Usuario usuarioActual;
+    private static MedicamentoRefrigerado medicamento;
+    private Map<String,MedicamentoNoRefrigerado> noRefrigerados;
+    private Map<String,MedicamentoRefrigerado> refrigerados;
+    private ControllerRefrigeratedMedicines controller;
     /**
      * Creates new form Refrigerado
      */
-    public Refrigerado() {
+    public Refrigerado(Usuario usuarioActual,MedicamentoRefrigerado medicamento,
+            Map<String,MedicamentoNoRefrigerado> noRefrigerados,Map<String,MedicamentoRefrigerado> refrigerados) {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
         this.setResizable(false);
+        this.noRefrigerados = noRefrigerados;
+        this.refrigerados = refrigerados;
+        this.usuarioActual = usuarioActual;
+        this.medicamento = medicamento;
+        controller = new ControllerRefrigeratedMedicines(abierto,expuesto,temMax,temMin);
     }
 
     /**
@@ -34,19 +50,18 @@ public class Refrigerado extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         temperaturaMaxLabel = new javax.swing.JLabel();
         temperaturaMinLabel = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        tiempoTxt = new javax.swing.JTextField();
+        abierto = new javax.swing.JTextField();
         tiempoLabel = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        expuestoTxt = new javax.swing.JTextField();
+        expuesto = new javax.swing.JTextField();
         expuestoLabel = new javax.swing.JLabel();
         guardarButtom = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        temMax = new javax.swing.JComboBox<>();
+        temMin = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,64 +74,50 @@ public class Refrigerado extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Roboto Black", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("MEDICAMENTOS REFRIGERADOS");
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/volver.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
+        jLabel3.setText("MEDICAMENTO REFRIGERADO");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(20, 20, 20))
+                .addGap(54, 54, 54))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(31, 31, 31))))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         temperaturaMaxLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        temperaturaMaxLabel.setText("TEMPERATURA MAXIMA");
+        temperaturaMaxLabel.setText("TEMPERATURA MAXIMA EN GRADOS");
 
         temperaturaMinLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        temperaturaMinLabel.setText("TEMPERATURA MINIMA");
+        temperaturaMinLabel.setText("TEMPERATURA MINIMA EN GRADOS");
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
-        tiempoTxt.setBackground(new java.awt.Color(255, 204, 204));
-        tiempoTxt.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        tiempoTxt.setForeground(new java.awt.Color(153, 153, 153));
-        tiempoTxt.setText("Ingrese la cantidad de tiempo que puede estar abierto el medicamento");
-        tiempoTxt.setToolTipText("");
-        tiempoTxt.setBorder(null);
-        tiempoTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+        abierto.setBackground(new java.awt.Color(255, 204, 204));
+        abierto.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        abierto.setForeground(new java.awt.Color(153, 153, 153));
+        abierto.setText("Ingrese la cantidad de tiempo que puede estar abierto el medicamento");
+        abierto.setToolTipText("");
+        abierto.setBorder(null);
+        abierto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tiempoTxtMouseClicked(evt);
+                abiertoMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                tiempoTxtMousePressed(evt);
+                abiertoMousePressed(evt);
             }
         });
-        tiempoTxt.addActionListener(new java.awt.event.ActionListener() {
+        abierto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tiempoTxtActionPerformed(evt);
+                abiertoActionPerformed(evt);
             }
         });
 
@@ -125,20 +126,20 @@ public class Refrigerado extends javax.swing.JFrame {
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
-        expuestoTxt.setBackground(new java.awt.Color(255, 204, 204));
-        expuestoTxt.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        expuestoTxt.setForeground(new java.awt.Color(153, 153, 153));
-        expuestoTxt.setText("Ingrese la cantidad de tiempo que puede estar expuesto");
-        expuestoTxt.setToolTipText("");
-        expuestoTxt.setBorder(null);
-        expuestoTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+        expuesto.setBackground(new java.awt.Color(255, 204, 204));
+        expuesto.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        expuesto.setForeground(new java.awt.Color(153, 153, 153));
+        expuesto.setText("Ingrese la cantidad de tiempo que puede estar expuesto");
+        expuesto.setToolTipText("");
+        expuesto.setBorder(null);
+        expuesto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                expuestoTxtMousePressed(evt);
+                expuestoMousePressed(evt);
             }
         });
-        expuestoTxt.addActionListener(new java.awt.event.ActionListener() {
+        expuesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                expuestoTxtActionPerformed(evt);
+                expuestoActionPerformed(evt);
             }
         });
 
@@ -179,9 +180,9 @@ public class Refrigerado extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        temMax.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        temMin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -195,13 +196,13 @@ public class Refrigerado extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(temMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(temMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jSeparator4)
-                        .addComponent(expuestoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(expuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(expuestoLabel)
-                        .addComponent(tiempoTxt)
+                        .addComponent(abierto)
                         .addComponent(tiempoLabel)
                         .addComponent(temperaturaMinLabel)
                         .addComponent(temperaturaMaxLabel)
@@ -216,24 +217,24 @@ public class Refrigerado extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(temperaturaMaxLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(temMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(temperaturaMinLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(temMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(tiempoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tiempoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(abierto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(expuestoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(expuestoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(expuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(guardarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
@@ -247,40 +248,52 @@ public class Refrigerado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        crearMedicamento ventana = new crearMedicamento();
-        ventana.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void tiempoTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tiempoTxtMousePressed
+    private void abiertoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_abiertoMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tiempoTxtMousePressed
+    }//GEN-LAST:event_abiertoMousePressed
 
-    private void tiempoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempoTxtActionPerformed
+    private void abiertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abiertoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tiempoTxtActionPerformed
+    }//GEN-LAST:event_abiertoActionPerformed
 
-    private void expuestoTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expuestoTxtMousePressed
-        if (expuestoTxt.getText().equals("Ingrese la cantidad de tiempo que puede estar expuesto")){
-            expuestoTxt.setText("");
-            expuestoTxt.setForeground(Color.black);
+    private void expuestoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expuestoMousePressed
+        if (expuesto.getText().equals("Ingrese la cantidad de tiempo que puede estar expuesto")){
+            expuesto.setText("");
+            expuesto.setForeground(Color.black);
         }
         
-        if (tiempoTxt.getText().isEmpty()){
-            tiempoTxt.setText("Ingrese la cantidad de tiempo que puede estar abierto el medicamento");
-            tiempoTxt.setForeground(Color.gray);
+        if (abierto.getText().isEmpty()){
+            abierto.setText("Ingrese la cantidad de tiempo que puede estar abierto el medicamento");
+            abierto.setForeground(Color.gray);
         }
-    }//GEN-LAST:event_expuestoTxtMousePressed
+    }//GEN-LAST:event_expuestoMousePressed
 
-    private void expuestoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expuestoTxtActionPerformed
+    private void expuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expuestoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_expuestoTxtActionPerformed
+    }//GEN-LAST:event_expuestoActionPerformed
 
     private void guardarButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtomMouseClicked
-        crearMedicamento ventana = new crearMedicamento();
-        ventana.setVisible(true);
-        this.setVisible(false);
+        if(temMax.getSelectedItem()=="---"){
+            JOptionPane.showMessageDialog(null, "Debes seleccionar una temperatura maxima.");
+        }else if(temMin.getSelectedItem()=="---"){
+            JOptionPane.showMessageDialog(null, "Debes seleccionar una temperatura minima.");
+        }else if("Ingrese la cantidad de tiempo que puede estar abierto el medicamento".equals(abierto.getText()) || "".equals(abierto.getText())){
+            JOptionPane.showMessageDialog(null, "Debes ingresar un tiempo abierto limite.");
+        }else if("Ingrese la cantidad de tiempo que puede estar expuesto".equals(expuesto.getText())||"".equals(expuesto.getText())){
+            JOptionPane.showMessageDialog(null, "Debes ingresar un tiempo expuesto limite.");
+        }else{
+            medicamento.setTemperaturaMaxima((Double.parseDouble((String) temMax.getSelectedItem())));
+            medicamento.setTemperaturaMinima((Double.parseDouble((String) temMin.getSelectedItem())));
+            medicamento.setTiempoAbierto(abierto.getText());
+            medicamento.setTiempoExpuesto(expuesto.getText());
+            refrigerados.put(medicamento.getNombreMedicamento(),medicamento);
+            controller.guardarEnDB(medicamento);
+            JOptionPane.showMessageDialog(null, "El medicamento se ha registrado de manera exitosa", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+            Gestor ventana = new Gestor(usuarioActual,noRefrigerados,refrigerados);
+            ventana.setVisible(true);
+            this.setVisible(false);
+        }
+        
     }//GEN-LAST:event_guardarButtomMouseClicked
 
     private void guardarButtomMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtomMouseEntered
@@ -291,17 +304,17 @@ public class Refrigerado extends javax.swing.JFrame {
         guardarButtom.setBackground(new Color(255, 153, 204));
     }//GEN-LAST:event_guardarButtomMouseExited
 
-    private void tiempoTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tiempoTxtMouseClicked
-        if (tiempoTxt.getText().equals("Ingrese la cantidad de tiempo que puede estar abierto el medicamento")){
-            tiempoTxt.setText("");
-            tiempoTxt.setForeground(Color.black);
+    private void abiertoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_abiertoMouseClicked
+        if (abierto.getText().equals("Ingrese la cantidad de tiempo que puede estar abierto el medicamento")){
+            abierto.setText("");
+            abierto.setForeground(Color.black);
         }
 
-        if (expuestoTxt.getText().isEmpty()){
-            expuestoTxt.setText("Ingrese la cantidad de tiempo que puede estar expuesto");
-            expuestoTxt.setForeground(Color.gray);
+        if (expuesto.getText().isEmpty()){
+            expuesto.setText("Ingrese la cantidad de tiempo que puede estar expuesto");
+            expuesto.setForeground(Color.gray);
         }
-    }//GEN-LAST:event_tiempoTxtMouseClicked
+    }//GEN-LAST:event_abiertoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -329,22 +342,21 @@ public class Refrigerado extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Refrigerado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        Map<String,MedicamentoNoRefrigerado> noRefrigerados = null;
+        Map<String,MedicamentoRefrigerado> refrigerados =null;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Refrigerado().setVisible(true);
+                new Refrigerado(usuarioActual,medicamento,noRefrigerados,refrigerados).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField abierto;
+    private javax.swing.JTextField expuesto;
     private javax.swing.JLabel expuestoLabel;
-    private javax.swing.JTextField expuestoTxt;
     private javax.swing.JPanel guardarButtom;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -352,9 +364,10 @@ public class Refrigerado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JComboBox<String> temMax;
+    private javax.swing.JComboBox<String> temMin;
     private javax.swing.JLabel temperaturaMaxLabel;
     private javax.swing.JLabel temperaturaMinLabel;
     private javax.swing.JLabel tiempoLabel;
-    private javax.swing.JTextField tiempoTxt;
     // End of variables declaration//GEN-END:variables
 }

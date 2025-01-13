@@ -22,6 +22,16 @@ public class Usuario {
         acceso = false;
     }
 
+    public Usuario(String nombre, String apellido, String usuario, String contraseña, int idUsuario, boolean acceso) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+        this.idUsuario = idUsuario;
+        this.acceso = acceso;
+    }
+    
+
     public String getNombre() {
         return nombre;
     }

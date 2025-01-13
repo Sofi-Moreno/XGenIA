@@ -4,7 +4,9 @@
  */
 package View;
 
+import Model.Usuario;
 import java.awt.Color;
+import java.util.Map;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,13 +14,15 @@ import javax.swing.ImageIcon;
  * @author Riarb
  */
 public class Registro extends javax.swing.JFrame {
-
+    private Map<String,Usuario> usuarios;
     /**
      * Creates new form Registro
      */
-    public Registro() {
+    public Registro(Map<String,Usuario> usuarios) {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        this.usuarios = usuarios;
+        System.out.println(usuarios);
+        setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
         this.setResizable(false);
         
     }
@@ -297,13 +301,13 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVolverMouseClicked
 
     private void botonEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEmpleadoMouseClicked
-        CreacionUsuario empleado = new CreacionUsuario("Crea una cuenta como empleado");
+        CreacionUsuario empleado = new CreacionUsuario(usuarios,"Crea una cuenta como empleado");
         empleado.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonEmpleadoMouseClicked
 
     private void botonClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonClienteMouseClicked
-        CreacionUsuario cliente = new CreacionUsuario("Crea una cuenta como cliente");
+        CreacionUsuario cliente = new CreacionUsuario(usuarios,"Crea una cuenta como cliente");
         cliente.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonClienteMouseClicked
@@ -358,11 +362,11 @@ public class Registro extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        Map<String,Usuario> usuarios=null;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Registro().setVisible(true);
+                new Registro(usuarios).setVisible(true);
             }
         });
     }

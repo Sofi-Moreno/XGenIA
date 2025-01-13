@@ -8,8 +8,10 @@ import Model.Usuario;
 import java.sql.ResultSet;
 import javax.swing.*;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
@@ -22,256 +24,145 @@ public class ControllerUser {
     //atributos para iniciar sesion
     JTextField usuario,contraseña;
     //atributos para crear usuario
-    JTextField nombre,apellido,user,pass;
+    JTextField nombre,apellido,pass;
+    //lista usuarios
+    private Map<String,Usuario> usuarios;
+    private Usuario usuarioActual;
     //CONSTRUCTORES
     //iniciar sesion
-    public ControllerUser(JFrame ventana, JTextField usuario, JTextField contraseña) {
+    public ControllerUser(JFrame ventana, JTextField usuario, JTextField contraseña,Map<String,Usuario> usuarios, Usuario usuarioActual) {
         this.ventana = ventana;
         this.usuario = usuario;
         this.contraseña = contraseña;
+        this.usuarios = usuarios;
+        this.usuarioActual = usuarioActual;
     }
     //registrar usuario
-
-    public ControllerUser(JFrame ventana, JTextField nombre, JTextField apellido, JTextField user, JTextField pass) {
+    public ControllerUser(JFrame ventana, JTextField nombre, JTextField apellido, JTextField usuario,
+            JTextField contraseña,Map<String,Usuario> usuarios, Usuario usuarioActual) {
         this.ventana = ventana;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.user = user;
-        this.pass = pass;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+        this.usuarios = usuarios;
+        this.usuarioActual = usuarioActual;
+    }
+
+    public ControllerUser(JFrame ventana, JTextField usuario, JTextField contraseña, JTextField nombre, JTextField apellido,Usuario usuarioActual) {
+        this.ventana = ventana;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.usuarioActual = usuarioActual;
     }
     
+
+    public Usuario getUsuarioActual() {
+        return usuarioActual;
+    }
     
+    //LISTA USUARIO
+    public void listaUsuarios(){
+        ConnectionDB con = new ConnectionDB();
+        Connection conex = con.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conex.prepareStatement("SELECT * FROM usuario");
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                Usuario user = new Usuario(rs.getString("nombre"),rs.getString("apellido"),rs.getString("usuario"),
+                               rs.getString("contraseña"),rs.getInt("id"),rs.getBoolean("acceso"));
+                usuarios.put(rs.getString("usuario"), user);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexión.");
+        }
+        finally{
+            try {
+                if(stmt!=null) stmt.close();
+                if(rs!=null) rs.close();
+                conex.close();
+                con.desconectar();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error de conexión.");
+            }
+        }
+    }
     //METODOS INICIAR SESION
-    //validar existencia del usuario
-    public boolean validarUsuario(Usuario user){
-        boolean bol = true;
-        ConnectionDB con = new ConnectionDB();
-        Connection conex = con.getConnection();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        try{
-            stmt = conex.prepareStatement("SELECT id,usuario FROM usuario");
-            rs = stmt.executeQuery();
-            while(rs.next()){
-                if(usuario.getText().equals(rs.getString("usuario"))){
-                    user.setIdUsuario(rs.getInt("id"));
-                    user.setUsuario(usuario.getText());
-                    bol = false;
-                }
-            }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexión.");
-        }finally{
-            try {
-                if(stmt!=null) stmt.close();
-                if(rs!=null) rs.close();
-                conex.close();
-                con.desconectar();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error de conexión.");
-            }
-        }
-        return bol;
-    }
-    //validar la contraseña
-    public boolean validarcontraseña(Usuario user){
-        boolean bol = true;
-        ConnectionDB con = new ConnectionDB();
-        Connection conex = con.getConnection();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        try{
-            stmt = conex.prepareStatement("SELECT contraseña FROM usuario WHERE id = ?");
-            stmt.setInt(1, user.getIdUsuario());
-            rs = stmt.executeQuery();
-            if(rs.next() && contraseña.getText().equals(rs.getString("contraseña"))){
-                user.setContraseña(contraseña.getText());
-                bol = false;
-            }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexión.");
-        }finally{
-            try {
-                if(stmt!=null) stmt.close();
-                if(rs!=null) rs.close();
-                conex.close();
-                con.desconectar();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error de conexión.");
-            }
-        }
-        return bol;
-    }
     //iniciar sesion
-    public boolean iniciarSesion(Usuario user){
+    public boolean iniciarSesion(){
         boolean bol = true;
-        ConnectionDB con = new ConnectionDB();
-        Connection conex = con.getConnection();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        try{
-            stmt = conex.prepareStatement("SELECT * FROM usuario WHERE id = ?");
-            stmt.setInt(1, user.getIdUsuario());
-            rs = stmt.executeQuery();
-            if(rs.next()){
-                user.setApellido(rs.getString("apellido"));
-                user.setNombre(rs.getString("nombre"));
-                user.setAcceso(rs.getBoolean("acceso"));
-            }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexión.");
-        }finally{
-            try {
-                if(stmt!=null) stmt.close();
-                if(rs!=null) rs.close();
-                conex.close();
-                con.desconectar();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error de conexión.");
-            }
+        usuarioActual = usuarios.get(usuario.getText());
+        if(usuarioActual==null){
+            bol=false;
+            JOptionPane.showMessageDialog(null, "El usuario que desea ingresar no existe en nuestro sistema, ingreselo nuevamente.");
+        }else if(usuarioActual.getContraseña() == null ? contraseña.getText() != null : !usuarioActual.getContraseña().equals(contraseña.getText())){
+            bol=false;
+            JOptionPane.showMessageDialog(null, "El pin ingresada no coincide con el usuario, ingresela nuevamente.");
         }
         return bol;
     }
-    
     //METODOS PARA CREAR USUARIO
-    //validar nombre y apellido
-    public int validarNombreApellidoRegistro(Usuario user,String tipoDato){
-        int e = 0; //valor sin errores
-        String patron= "^[A-Z][a-z]*$"; //Patron para ingresar una sola palabra con mayuscula al inicio.
-        JTextField dato = null;
-        if(tipoDato.equals("apellido")){
-            dato = apellido;
-        }else if(tipoDato.equals("nombre")){
-            dato = nombre;
-        }
+    //validar expresion regular
+    public boolean patronLetras(String cadena, String patron){
         Pattern pattern = Pattern.compile(patron);
-        Matcher matcher = pattern.matcher((dato.getText()));
-        if(!matcher.matches() && (dato.getText().length()>25 || dato.getText().length()<1)){
-            e = 1;//no cumple el patron y no es del tamaño correcto
-        }
-        else if (!matcher.matches()){
-            e = 2; //no cumple el patron
-        }
-        else if(dato.getText().length()>25 || dato.getText().length()<1){
-            e = 3; //no tiene el tamaño correcto
-        }
-        else if(e==0 && tipoDato.equals("apellido")){
-            user.setApellido(dato.getText()); //aqui asignamos apellido
-        }else if(e==0 && tipoDato.equals("nombre")){
-            user.setNombre(dato.getText()); //aqui asignamos nombre
-        }
-        return e;
+        Matcher matcher = pattern.matcher(cadena);
+        return matcher.matches();
     }
-    //validar Usuario
-    public int validarUsuarioRegistro(Usuario us){
-        int val =0; //si no hay errores
-        boolean bol = false;
-        ConnectionDB con = new ConnectionDB();
-        Connection conex = con.getConnection(); 
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        String patron = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!&$._*-]).*$";
-        Pattern pattern = Pattern.compile(patron);
-        Matcher matcher = pattern.matcher(user.getText());
-        try {
-            //aqui definimos si este usuario ya existe
-            stmt = conex.prepareStatement("SELECT usuario FROM usuario");
-            rs = stmt.executeQuery();
-            while(rs.next()){
-                if(user.getText().equals(rs.getString("usuario"))){
-                    bol = true;
+    //registrar usuario
+    public boolean registrarUsuario(){
+        boolean bol = true;
+        if(!patronLetras(nombre.getText(),"^[a-zA-Z]{1,15}$")){
+            JOptionPane.showMessageDialog(null, "El nombre ingresado no cumple con solo poseer letras o contener de 1-15 caracteres.");
+            bol = false;
+        }else {
+            usuarioActual.setNombre(nombre.getText());
+            if(!patronLetras(apellido.getText(),"^[a-zA-Z]{1,15}$")){
+                JOptionPane.showMessageDialog(null, "El apellido ingresado no cumple con solo poseer letras o contener de 1-15 caracteres.");
+                bol = false;
+            }else{
+                usuarioActual.setApellido(apellido.getText());
+                Usuario us = usuarios.get(usuario.getText());
+                if(us!=null){
+                    JOptionPane.showMessageDialog(null, "El usuario ingresado ya existe, ingrese uno diferente.");
+                    bol = false;
+                }else if(!patronLetras(usuario.getText(),"^[^\\s]{1,10}$")){
+                    JOptionPane.showMessageDialog(null, "El usuario ingresado no contiene de 1-10 caracteres, ingrese uno diferente.");
+                    bol = false;
+                }else{
+                    usuarioActual.setUsuario(usuario.getText());
+                    for(Map.Entry<String,Usuario> entrada:usuarios.entrySet()){
+                        if(entrada.getValue().getContraseña() == null ? contraseña.getText() == null : entrada.getValue().getContraseña().equals(contraseña.getText())){
+                            JOptionPane.showMessageDialog(null, "El pin ingresada ya existe, ingrese una diferente.");
+                            return false;
+                        }
+                    }
+                    if(!patronLetras(contraseña.getText(),"^\\d{4}$")){
+                        JOptionPane.showMessageDialog(null, "El pin no cumple con poseer 4 caracteres y soo ser numeros, ingrese uno diferente.");
+                        bol = false;
+                    }else{
+                        usuarioActual.setContraseña(contraseña.getText());
+                    }
                 }
             }
-            if(bol==true){
-                val = 1; //error si este usuario ya existe
-            }
-            else if(!matcher.matches() && (user.getText().length()>15 || user.getText().length()<3)){
-                val = 2; //si no cumple el patron y no tiene la longitud correcta
-            }
-            else if(!matcher.matches()){
-                val = 3; //si no cumple el patron
-            }
-            else if(user.getText().length()>15 || user.getText().length()<3){
-                val = 4; //error si no tiene el tamaño correcto
-            }
-            else{
-                us.setUsuario(user.getText());
-            }
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de conexión.");
-        }finally{
-            try {
-                if(stmt!=null) stmt.close();
-                if(rs!=null) rs.close();
-                conex.close();
-                con.desconectar();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error de conexión.");
-            }
         }
-        return val;
-    }
-    //validar contraseña
-    public int validarContraseña(Usuario user) throws SQLException{
-        ConnectionDB con = new ConnectionDB();
-        Connection conex = con.getConnection(); 
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        int val = 0; //valor sin errores
-        boolean bol = false; //valor sin error
-        String patron = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!$&¡*\\-_]).+$";
-        Pattern pattern = Pattern.compile(patron);
-        Matcher matcher = pattern.matcher(pass.getText());
-        try {
-            stmt = conex.prepareStatement("SELECT contraseña FROM usuario");
-            rs = stmt.executeQuery();
-            while(rs.next()){
-                if(pass.getText().equals(rs.getString("contraseña"))){
-                    bol = true;//si ya se encuentra en la base de datos
-                }
-            }
-            if(bol == true){
-                val = 1; //si ya esta en la base de datos
-            }
-            if(!matcher.matches() && (pass.getText().length()>10 || pass.getText().length()<3)){
-                val = 2; //si no cumple con ambas condiciones
-            }
-            else if(!matcher.matches()){
-                val = 3; //si no cumple el patron
-            }
-            else if(pass.getText().length()>10 || pass.getText().length()<3){
-                val = 4; //si no cumple la longitud
-            }
-            else{
-                user.setContraseña(pass.getText());
-            } 
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de conexión.");
-        }finally{
-            try {
-                if(stmt!=null) stmt.close();
-                if(rs!=null) rs.close();
-                conex.close();
-                con.desconectar();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error de conexión.");
-            }
-        }
-        return val;
+        return bol;
     }
     //guardar en db
-    public boolean guardarRegistroDB(Usuario user, int acces){
+    public void guardarRegistroDB(int acces){
         ConnectionDB con = new ConnectionDB();
         Connection conex = con.getConnection(); 
         boolean bol = false;
         PreparedStatement stmt = null;
         try {
             stmt = conex.prepareStatement("INSERT INTO usuario (usuario, contraseña, nombre, apellido,acceso) VALUES (?,?,?,?,?)");
-            stmt.setString(1,user.getUsuario());
-            stmt.setString(2,user.getContraseña());
-            stmt.setString(3,user.getNombre());
-            stmt.setString(4,user.getApellido());
+            stmt.setString(1,usuarioActual.getUsuario());
+            stmt.setString(2,usuarioActual.getContraseña());
+            stmt.setString(3,usuarioActual.getNombre());
+            stmt.setString(4,usuarioActual.getApellido());
             stmt.setInt(5,acces);
             int rowsInserted = stmt.executeUpdate();
             if(rowsInserted>0){
@@ -288,6 +179,102 @@ public class ControllerUser {
                 JOptionPane.showMessageDialog(null, "Error de conexión.");
             }
         }
+    }
+    //validar modificacion
+    public boolean validarModificacion(){
+        boolean bol=true;
+        if(!patronLetras(nombre.getText(),"^[a-zA-Z]{1,15}$")){
+            JOptionPane.showMessageDialog(null, "El nombre ingresado no cumple con solo poseer letras o contener de 1-15 caracteres.");
+            bol = false;
+        }else {
+            usuarioActual.setNombre(nombre.getText());
+            if(!patronLetras(apellido.getText(),"^[a-zA-Z]{1,15}$")){
+                JOptionPane.showMessageDialog(null, "El apellido ingresado no cumple con solo poseer letras o contener de 1-15 caracteres.");
+                bol = false;
+            }else{
+                usuarioActual.setApellido(apellido.getText());
+                Usuario us = usuarios.get(usuario.getText());
+                if(us!=null & us.getIdUsuario()!=usuarioActual.getIdUsuario()){
+                    JOptionPane.showMessageDialog(null, "El usuario ingresado ya existe, ingrese uno diferente.");
+                    bol = false;
+                }else if(!patronLetras(usuario.getText(),"^[^\\s]{1,10}$")){
+                    JOptionPane.showMessageDialog(null, "El usuario ingresado no contiene de 1-10 caracteres, ingrese uno diferente.");
+                    bol = false;
+                }else{
+                    usuarioActual.setUsuario(usuario.getText());
+                    for(Map.Entry<String,Usuario> entrada:usuarios.entrySet()){
+                        if(entrada.getValue().getContraseña() == null ? contraseña.getText() == null : entrada.getValue().getContraseña().equals(contraseña.getText()) 
+                                & entrada.getValue().getIdUsuario()!=usuarioActual.getIdUsuario()){
+                            JOptionPane.showMessageDialog(null, "El pin ingresada ya existe, ingrese una diferente.");
+                            return false;
+                        }
+                    }
+                    if(!patronLetras(contraseña.getText(),"^\\d{4}$")){
+                        JOptionPane.showMessageDialog(null, "El pin no cumple con poseer 4 caracteres y solo ser numeros, ingrese uno diferente.");
+                        bol = false;
+                    }else{
+                        usuarioActual.setContraseña(contraseña.getText());
+                        bol = true;
+                    }
+                }
+            }
+        }
         return bol;
     }
+    //guardar modificacion
+    public void guardarModificacion(){
+        ConnectionDB con = new ConnectionDB();
+        Connection conex = con.getConnection(); 
+        boolean bol = false;
+        PreparedStatement st = null;
+        String sql = "UPDATE usuario SET usuario=?,contraseña=?,nombre=?,apellido=? WHERE id = ?";
+        try{
+            st = conex.prepareStatement(sql);
+            st.setString(1,usuarioActual.getUsuario());
+            st.setString(2,usuarioActual.getContraseña());
+            st.setString(3,usuarioActual.getNombre());
+            st.setString(4,usuarioActual.getApellido());
+            st.setInt(5, usuarioActual.getIdUsuario());
+            int rowsInserted = st.executeUpdate();
+            if(rowsInserted>0){
+                bol = true;
+            }
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error de conexión.");
+        }
+        finally{
+            try {
+                if(st!=null) st.close();
+                conex.close();
+                con.desconectar();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error de conexión.");
+            }
+        }
+    }
+    //eliminar usuario
+    public void eliminarUsuario(){
+        ConnectionDB con = new ConnectionDB();
+        Connection conex = con.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try{
+            stmt = conex.prepareStatement("DELETE FROM usuario WHERE id=?");
+            stmt.setInt(1, usuarioActual.getIdUsuario());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexión.");
+        }
+        finally{
+            try {
+                if(stmt!=null) stmt.close();
+                if(rs!=null) rs.close();
+                conex.close();
+                con.desconectar();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error de conexión.");
+            }
+        }
+    }
+    //
 }

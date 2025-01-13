@@ -6,16 +6,12 @@ package View;
 
 import Controller.ControllerUser;
 import Model.Usuario;
-import View.MainMenu;
 import java.awt.Color;
 import java.sql.*;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-
-
 
 /**
  *
@@ -24,14 +20,18 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     private Usuario usuarioActual;
     private ControllerUser controller;
+    private Map<String,Usuario> usuarios;
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
         this.setResizable(false);
-        controller = new ControllerUser(this,userTxt,passTxt);
+        usuarios = new LinkedHashMap<>();
+        usuarioActual = new Usuario();
+        controller = new ControllerUser(this,userTxt,passTxt,usuarios,usuarioActual);
+        controller.listaUsuarios();
     }
 
     /**
@@ -109,7 +109,7 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setText("USUARIO");
 
         jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel5.setText("CONTRASEÑA");
+        jLabel5.setText("PIN");
         jLabel5.setToolTipText("");
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -306,17 +306,20 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_passTxtActionPerformed
 
     private void botonEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseClicked
-        usuarioActual = new Usuario();
-        if(controller.validarUsuario(usuarioActual)){
-            JOptionPane.showMessageDialog(null, "El usuario que desea ingresar no existe en nuestro sistema, ingreselo nuevamente.");
-        }else if(controller.validarcontraseña(usuarioActual)){
-            JOptionPane.showMessageDialog(null, "La contraseña ingresada no coincide con el usuario, ingresela nuevamente.");
-        }else{
-            controller.iniciarSesion(usuarioActual);
-            MainMenu menu = new MainMenu(usuarioActual);
-            menu.setVisible(true);
-            this.setVisible(false);
-        }           
+        if(controller.iniciarSesion()){
+            usuarioActual = controller.getUsuarioActual();
+//            System.out.println(usuarioActual.getNombre()+", "+usuarioActual.getApellido()+", "+usuarioActual.getUsuario()+
+//                        ", "+usuarioActual.getContraseña()+", "+usuarioActual.getIdUsuario()+", "+usuarioActual.isAcceso());
+            if(usuarioActual.isAcceso()){
+                MainMenu menu = new MainMenu(usuarioActual);
+                menu.setVisible(true);
+                this.setVisible(false);
+            }else if(!usuarioActual.isAcceso()){
+                MainMenuCliente main = new MainMenuCliente(usuarioActual);
+                main.setVisible(true);
+                this.setVisible(false);
+            }
+        }
     }//GEN-LAST:event_botonEntrarMouseClicked
 
     private void botonEntrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseEntered
@@ -348,7 +351,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_userTxtMousePressed
 
     private void botonCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCrearMouseClicked
-        Registro registro= new Registro();
+        Registro registro= new Registro(usuarios);
         registro.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonCrearMouseClicked

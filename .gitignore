@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Created by https://www.toptal.com/developers/gitignore/api/netbeans,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=netbeans,intellij
 
@@ -126,3 +127,8 @@ nbdist/
 .nb-gradle/
 
 # End of https://www.toptal.com/developers/gitignore/api/netbeans,intellij
+=======
+/nbproject/private/
+/build/
+/dist/
+>>>>>>> 4542eedd6f823b85ffa589d2d1a97f1876aa1fbc

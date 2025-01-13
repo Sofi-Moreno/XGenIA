@@ -8,6 +8,7 @@ import Controller.ControllerUser;
 import Model.Usuario;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -18,15 +19,20 @@ import javax.swing.JOptionPane;
 public class CreacionUsuario extends javax.swing.JFrame {
     private Usuario usuarioActual;
     private ControllerUser controller;
+    private Map<String,Usuario> usuarios;
     /**
      * Creates new form CreacionCliente
      */
-    public CreacionUsuario(String mensaje) {
+    public CreacionUsuario(Map<String,Usuario> usuarios, String mensaje) {
         initComponents();
         tituloLabel.setText(mensaje);
-        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        this.usuarios = usuarios;
+        usuarioActual = new Usuario();
+        controller = new ControllerUser(this,nombreTxt,apellidoTxt,userTxt,passTxt, this.usuarios,usuarioActual);
+        setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
         this.setResizable(false);
-        controller = new ControllerUser(this,nombreTxt,apellidoTxt,userTxt,passTxt);
+        System.out.println(usuarios);
+        
     }
 
     /**
@@ -85,7 +91,7 @@ public class CreacionUsuario extends javax.swing.JFrame {
         jLabel7.setText("APELLIDO");
 
         jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        jLabel8.setText("CONTRASEÑA");
+        jLabel8.setText("PIN");
 
         botonGuardar.setBackground(new java.awt.Color(255, 153, 204));
         botonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -305,96 +311,28 @@ public class CreacionUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverMouseClicked
-        Registro registro = new Registro();
+        Registro registro = new Registro(usuarios);
         registro.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonVolverMouseClicked
 
     private void botonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarMouseClicked
-        usuarioActual = new Usuario();
-        try{
-            switch (controller.validarNombreApellidoRegistro(usuarioActual,"nombre")){
-                case 1:
-                    JOptionPane.showMessageDialog(null, "El nombre ingresado no cumple con el patron de iniciar "
-                    + "con mayuscula y continuar con minuscula y no tienen el tamaño correcto (1-25).");
-                    break;                     
-                case 2:
-                    JOptionPane.showMessageDialog(null, "El nombre ingresado no cumple con el patron de iniciar "
-                    + "con mayuscula y continuar con minuscula.");
-                    break;
-                case 3:
-                    JOptionPane.showMessageDialog(null, "El nombre ingresado no tiene el tamaño correcto (1-25)");                               
-                    break;
-                default:
-                    switch (controller.validarNombreApellidoRegistro(usuarioActual,"apellido")){
-                        case 1:
-                           JOptionPane.showMessageDialog(null, "El apellido ingresado no cumple con el patron de iniciar "
-                            + "con mayuscula y continuar con minuscula y no tienen el tamaño correcto (1-25).");
-                            break;
-                        case 2:
-                            JOptionPane.showMessageDialog(null, "El apellido ingresado no cumple con el patron de iniciar "
-                            + "con mayuscula y continuar con minuscula.");
-                            break;
-                        case 3:
-                            JOptionPane.showMessageDialog(null, "El apellido ingresado no tiene el tamaño correcto (1-25).");
-                            break;
-                        default:   
-                            switch(controller.validarUsuarioRegistro(usuarioActual)){
-                                case 1:
-                                   JOptionPane.showMessageDialog(null, "El usuario que esta ingresando ya existe, ingreselo nuevamente.");
-                                   break;
-                                case 2:
-                                    JOptionPane.showMessageDialog(null, "El usuario no cumple con el patron de tener almenos una letra mayuscula, "
-                                    + "almenos una letra minuscula y alguno de estos caracteres !&$._*- y no cumple con el tamaño "
-                                    + "correcto (3-10).");
-                                    break;
-                                case 3:
-                                    JOptionPane.showMessageDialog(null, "El usuario no cumple con el patron de tener almenos una letra mayuscula, "
-                                    + "almenos una letra minuscula y alguno de estos caracteres !&$._*-");
-                                    break; 
-
-                                case 4:
-                                    JOptionPane.showMessageDialog(null, "El usuario no cumple con el tamaño correcto (3-10).");
-                                    break;
-                                default:
-                                    switch(controller.validarContraseña(usuarioActual)){
-                                        case 1:
-                                            JOptionPane.showMessageDialog(null, "La contraseña que esta ingresando ya existe, ingresela nuevamente.");
-                                            break;
-                                        case 2:
-                                            JOptionPane.showMessageDialog(null, "La contraseña no cumple con el patron de tener almenos una letra mayuscula, "
-                                            + "almenos una letra minuscula, almenos un numero(0-9) y alguno de estos caracteres !&$._*- "
-                                            + "y no cumple con el tamaño correcto (3-10).");
-                                            break;
-
-                                        case 3:
-                                            JOptionPane.showMessageDialog(null, "La contraseña no cumple con el patron de tener almenos una letra mayuscula, "
-                                            + "almenos una letra minuscula, almenos un numero(0-9) y alguno de estos caracteres !&$._*- ");
-                                            break;
-
-                                        case 4:
-                                            JOptionPane.showMessageDialog(null, "La contraseña no cumple con el tamaño correcto (3-10).");
-                                            break;
-                                        default:
-                                            if(tituloLabel.getText().equals("Crear una cuenta como empleado")){
-                                                controller.guardarRegistroDB(usuarioActual,1);
-                                            }else if(tituloLabel.getText().equals("Crear una cuenta como cliente")){
-                                                controller.guardarRegistroDB(usuarioActual,0);
-                                            }
-                                            JOptionPane.showMessageDialog(null, "El usuario ha sido registrado con exito.");
-                                            MainMenu main = new MainMenu(usuarioActual);
-                                            main.setVisible(true);
-                                            this.setVisible(false);
-                                            break;
-                                    }
-                                break;
-                            }
-                        break;
-                    }
-                break;
+        if(controller.registrarUsuario()){
+            if("Crea una cuenta como empleado".equals(tituloLabel.getText())){
+                usuarioActual.setAcceso(true);
+                controller.guardarRegistroDB(1);
+                MainMenu main = new MainMenu(usuarioActual);
+                main.setVisible(true);
+                this.setVisible(false);
+            }else if("Crea una cuenta como cliente".equals(tituloLabel.getText())){
+                usuarioActual.setAcceso(false);
+                JOptionPane.showMessageDialog(null, "El usuario ha sido registrado con exito, espere un momento...");
+                controller.guardarRegistroDB(0);
+                MainMenuCliente main = new MainMenuCliente(usuarioActual);
+                main.setVisible(true);
+                this.setVisible(false);
             }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexión.");
+            
         }
     }//GEN-LAST:event_botonGuardarMouseClicked
 
@@ -520,11 +458,11 @@ public class CreacionUsuario extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CreacionUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        Map<String,Usuario> usuarios =null;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreacionUsuario("").setVisible(true);
+                new CreacionUsuario(usuarios,"").setVisible(true);
             }
         });
     }

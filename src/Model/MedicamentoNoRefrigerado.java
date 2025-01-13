@@ -13,7 +13,9 @@ import java.util.List;
 public class MedicamentoNoRefrigerado extends Medicamento{
     private List<String> noAlmacenar;
 
-    public MedicamentoNoRefrigerado(List<String> noAlmacenar, String codigoMedicamento, String nombreMedicamento, double costoMedicamento, double precioVenta, int unidadesVendidas, int unidadesExistentes, String fechaVencimiento, String numeroLote, String vigenciaMedicamento) {
+    public MedicamentoNoRefrigerado(List<String> noAlmacenar, String codigoMedicamento, String nombreMedicamento, 
+            double costoMedicamento, double precioVenta, int unidadesVendidas, int unidadesExistentes, 
+            String fechaVencimiento, String numeroLote, String vigenciaMedicamento) {
         super(codigoMedicamento, nombreMedicamento, costoMedicamento, precioVenta, unidadesVendidas, unidadesExistentes, fechaVencimiento, numeroLote, vigenciaMedicamento);
         this.noAlmacenar = noAlmacenar;
     }

@@ -4,7 +4,14 @@
  */
 package View;
 
+import Controller.ControllerMedicines;
+import Model.MedicamentoNoRefrigerado;
+import Model.MedicamentoRefrigerado;
+import Model.Usuario;
 import java.awt.Color;
+import java.util.List;
+import java.util.Map;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -13,12 +20,21 @@ import javax.swing.JOptionPane;
  * @author Riarb
  */
 public class crearMedicamento extends javax.swing.JFrame {
-
+    private static Usuario usuarioActual;
+    private ControllerMedicines controller;
+    private Map<String,MedicamentoNoRefrigerado> noRefrigerados;
+    private Map<String,MedicamentoRefrigerado> refrigerados;
     /**
      * Creates new form crearMedicamento
      */
-    public crearMedicamento() {
+    public crearMedicamento(Usuario usuarioActual,Map<String,MedicamentoNoRefrigerado> noRefrigerados,Map<String,MedicamentoRefrigerado> refrigerados) {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
+        this.setResizable(false);
+        this.noRefrigerados = noRefrigerados;
+        this.refrigerados = refrigerados;
+        this.usuarioActual = usuarioActual;
+        controller = new ControllerMedicines(codigoTxt,nombreTxt,loteTxt,costoTxt,unidadesTxt,unidadesTxt1,mesBox,añoBox,vigenciaBox,noRefrigerados,refrigerados);
     }
 
     /**
@@ -38,7 +54,6 @@ public class crearMedicamento extends javax.swing.JFrame {
         codigoLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         nombreLabel = new javax.swing.JLabel();
-        fechaTxt = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         loteLabel = new javax.swing.JLabel();
         loteTxt = new javax.swing.JTextField();
@@ -49,14 +64,18 @@ public class crearMedicamento extends javax.swing.JFrame {
         unidadesLabel = new javax.swing.JLabel();
         unidadesTxt = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
-        jSeparator7 = new javax.swing.JSeparator();
         codigoTxt = new javax.swing.JTextField();
         fechaLabel = new javax.swing.JLabel();
         vigenciaLabel = new javax.swing.JLabel();
-        userTxt7 = new javax.swing.JTextField();
         vigenciaBox = new javax.swing.JComboBox<>();
         guardarButtom = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
+        añoBox = new javax.swing.JComboBox<>();
+        mesBox = new javax.swing.JComboBox<>();
+        fechaLabel1 = new javax.swing.JLabel();
+        unidadesLabel1 = new javax.swing.JLabel();
+        unidadesTxt1 = new javax.swing.JTextField();
+        jSeparator6 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,7 +106,7 @@ public class crearMedicamento extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(47, 47, 47)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,23 +145,6 @@ public class crearMedicamento extends javax.swing.JFrame {
 
         nombreLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         nombreLabel.setText("NOMBRE");
-
-        fechaTxt.setBackground(new java.awt.Color(255, 204, 204));
-        fechaTxt.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        fechaTxt.setForeground(new java.awt.Color(153, 153, 153));
-        fechaTxt.setText("--/----");
-        fechaTxt.setToolTipText("");
-        fechaTxt.setBorder(null);
-        fechaTxt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                fechaTxtMousePressed(evt);
-            }
-        });
-        fechaTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fechaTxtActionPerformed(evt);
-            }
-        });
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -212,8 +214,6 @@ public class crearMedicamento extends javax.swing.JFrame {
 
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
 
-        jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
-
         codigoTxt.setBackground(new java.awt.Color(255, 204, 204));
         codigoTxt.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         codigoTxt.setForeground(new java.awt.Color(153, 153, 153));
@@ -237,23 +237,7 @@ public class crearMedicamento extends javax.swing.JFrame {
         vigenciaLabel.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         vigenciaLabel.setText("VIGENCIA");
 
-        userTxt7.setBackground(new java.awt.Color(255, 204, 204));
-        userTxt7.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        userTxt7.setForeground(new java.awt.Color(153, 153, 153));
-        userTxt7.setToolTipText("");
-        userTxt7.setBorder(null);
-        userTxt7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTxt7MousePressed(evt);
-            }
-        });
-        userTxt7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxt7ActionPerformed(evt);
-            }
-        });
-
-        vigenciaBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        vigenciaBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Vencido", "Por Vencer", "Vigente" }));
         vigenciaBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vigenciaBoxActionPerformed(evt);
@@ -294,6 +278,45 @@ public class crearMedicamento extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        añoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        añoBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                añoBoxActionPerformed(evt);
+            }
+        });
+
+        mesBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        mesBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesBoxActionPerformed(evt);
+            }
+        });
+
+        fechaLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        fechaLabel1.setText("   MES                        AÑO    ");
+
+        unidadesLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        unidadesLabel1.setText("UNIDADES VENDIDAS");
+
+        unidadesTxt1.setBackground(new java.awt.Color(255, 204, 204));
+        unidadesTxt1.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        unidadesTxt1.setForeground(new java.awt.Color(153, 153, 153));
+        unidadesTxt1.setText("Ingrese las unidades vendidas");
+        unidadesTxt1.setToolTipText("");
+        unidadesTxt1.setBorder(null);
+        unidadesTxt1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                unidadesTxt1MousePressed(evt);
+            }
+        });
+        unidadesTxt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unidadesTxt1ActionPerformed(evt);
+            }
+        });
+
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -320,23 +343,27 @@ public class crearMedicamento extends javax.swing.JFrame {
                                 .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
                             .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(codigoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 40, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(vigenciaLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(userTxt7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(vigenciaLabel)
                             .addComponent(fechaLabel)
-                            .addComponent(fechaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(vigenciaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(176, 176, 176))
+                            .addComponent(vigenciaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(mesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(añoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fechaLabel1)
+                            .addComponent(unidadesLabel1)
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(unidadesTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(guardarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(199, 199, 199))))
+                        .addGap(66, 66, 66))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,50 +377,54 @@ public class crearMedicamento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codigoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fechaTxt))
+                    .addComponent(fechaLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSeparator7)
-                    .addComponent(jSeparator1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombreLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nombreLabel)
-                            .addComponent(vigenciaLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombreTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nombreTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(vigenciaLabel)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(mesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(añoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(userTxt7, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(vigenciaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(loteLabel))
+                    .addComponent(vigenciaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loteLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(costoLabel)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(loteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(costoLabel))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(unidadesLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(unidadesTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(costoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(unidadesLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(unidadesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(guardarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(unidadesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(guardarButtom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 690, 490));
@@ -426,9 +457,9 @@ public class crearMedicamento extends javax.swing.JFrame {
             unidadesTxt.setText("Ingrese las unidades existentes");
             unidadesTxt.setForeground(new Color(153,153,153));
         }
-        if (fechaTxt.getText().isEmpty()){
-            fechaTxt.setText("--/----");
-            fechaTxt.setForeground(new Color(153,153,153));
+        if (unidadesTxt1.getText().isEmpty()){
+            unidadesTxt1.setText("Ingrese las unidades vendidas");
+            unidadesTxt1.setForeground(new Color(153,153,153));
         }
         
 
@@ -437,37 +468,6 @@ public class crearMedicamento extends javax.swing.JFrame {
     private void nombreTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreTxtActionPerformed
-
-    private void fechaTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaTxtMousePressed
-        if (fechaTxt.getText().equals("--/----")){
-            fechaTxt.setText("");
-            fechaTxt.setForeground(Color.black);
-        }
-        if (codigoTxt.getText().isEmpty()){
-            codigoTxt.setText("Ingrese el codigo del medicamento");
-            codigoTxt.setForeground(new Color(153,153,153));
-        }
-        if (nombreTxt.getText().isEmpty()){
-            nombreTxt.setText("Ingrese el nombre del medicamento");
-            nombreTxt.setForeground(new Color(153,153,153));
-        }
-        if (costoTxt.getText().isEmpty()){
-            costoTxt.setText("Ingrese el costo inicial");
-            costoTxt.setForeground(new Color(153,153,153));
-        }
-        if (unidadesTxt.getText().isEmpty()){
-            unidadesTxt.setText("Ingrese las unidades existentes");
-            unidadesTxt.setForeground(new Color(153,153,153));
-        }
-        if (loteTxt.getText().isEmpty()){
-            loteTxt.setText("Ingrese el numero de lote");
-            loteTxt.setForeground(new Color(153,153,153));
-        }
-    }//GEN-LAST:event_fechaTxtMousePressed
-
-    private void fechaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fechaTxtActionPerformed
 
     private void loteTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loteTxtMousePressed
         if (loteTxt.getText().equals("Ingrese el numero de lote")){
@@ -490,9 +490,9 @@ public class crearMedicamento extends javax.swing.JFrame {
             unidadesTxt.setText("Ingrese las unidades existentes");
             unidadesTxt.setForeground(new Color(153,153,153));
         }
-        if (fechaTxt.getText().isEmpty()){
-            fechaTxt.setText("--/----");
-            fechaTxt.setForeground(new Color(153,153,153));
+        if (unidadesTxt1.getText().isEmpty()){
+            unidadesTxt1.setText("Ingrese las unidades vendidas");
+            unidadesTxt1.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_loteTxtMousePressed
 
@@ -521,9 +521,9 @@ public class crearMedicamento extends javax.swing.JFrame {
             unidadesTxt.setText("Ingrese las unidades existentes");
             unidadesTxt.setForeground(new Color(153,153,153));
         }
-        if (fechaTxt.getText().isEmpty()){
-            fechaTxt.setText("--/----");
-            fechaTxt.setForeground(new Color(153,153,153));
+        if (unidadesTxt1.getText().isEmpty()){
+            unidadesTxt1.setText("Ingrese las unidades vendidas");
+            unidadesTxt1.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_costoTxtMousePressed
 
@@ -552,10 +552,11 @@ public class crearMedicamento extends javax.swing.JFrame {
             costoTxt.setText("Ingrese el costo inicial");
             costoTxt.setForeground(new Color(153,153,153));
         }
-        if (fechaTxt.getText().isEmpty()){
-            fechaTxt.setText("--/----");
-            fechaTxt.setForeground(new Color(153,153,153));
+        if (unidadesTxt1.getText().isEmpty()){
+            unidadesTxt1.setText("Ingrese las unidades vendidas");
+            unidadesTxt1.setForeground(new Color(153,153,153));
         }
+
     }//GEN-LAST:event_unidadesTxtMousePressed
 
     private void unidadesTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unidadesTxtActionPerformed
@@ -583,9 +584,9 @@ public class crearMedicamento extends javax.swing.JFrame {
             unidadesTxt.setText("Ingrese las unidades existentes");
             unidadesTxt.setForeground(new Color(153,153,153));
         }
-        if (fechaTxt.getText().isEmpty()){
-            fechaTxt.setText("--/----");
-            fechaTxt.setForeground(new Color(153,153,153));
+        if (unidadesTxt1.getText().isEmpty()){
+            unidadesTxt1.setText("Ingrese las unidades vendidas");
+            unidadesTxt1.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_codigoTxtMousePressed
 
@@ -593,26 +594,88 @@ public class crearMedicamento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_codigoTxtActionPerformed
 
-    private void userTxt7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxt7MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt7MousePressed
-
-    private void userTxt7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxt7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTxt7ActionPerformed
-
     private void guardarButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtomMouseClicked
-        int option = JOptionPane.showConfirmDialog( null, "REQUIERE REFRIGERACION?", "CREAR MEDICAMENTO", JOptionPane.YES_NO_OPTION );
-        if (option == JOptionPane.YES_OPTION) { 
-            Refrigerado ref = new Refrigerado();
-            ref.setVisible(true);
-            this.setVisible(false);
-            
-        } else if (option == JOptionPane.NO_OPTION) {
-            NoRefrigerado ref = new NoRefrigerado();
-            ref.setVisible(true);
-            this.setVisible(false);
-        }
+        switch(controller.validarCodigo()){
+            case 1:
+                JOptionPane.showMessageDialog(null, "El codigo ingresado no cumple con el patron LLL-NNNNN, ingreselo nuevamente.");
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "El codigo ingresado ya existe, ingreselo nuevamente.");
+                break;
+            default:
+                switch(controller.validarNombre()){
+                    case 1:
+                        JOptionPane.showMessageDialog(null, "El nombre no cumple con el tamaño correcto (1-45), ingreselo nuevamente.");
+                        break;
+                    default:
+                        switch(controller.validarLote()){
+                            case 1:
+                                JOptionPane.showMessageDialog(null, "El lote ingresado no cumple con el patron LLNNN, ingreselo nuevamente.");
+                                break;
+                            case 2:
+                                JOptionPane.showMessageDialog(null, "El lote ingresado ya existe, ingreselo nuevamente.");
+                                break;
+                            default:
+                                switch(controller.validarCosto()){
+                                    case 1:
+                                        JOptionPane.showMessageDialog(null, "El costo solo pueden ser numeros y punto(.) para marcar los decimales, ingreselo nuevamente.");
+                                        break;
+                                    default:
+                                        switch(controller.validarUnidadesExistentes()){
+                                            case 1:
+                                                JOptionPane.showMessageDialog(null, "Las unidades existentes solo pueden ser numeros enteros, ingreselo nuevamente.");
+                                                break;
+                                            default:
+                                                switch(controller.validarUnidadesVendidas()){
+                                                    case 1:
+                                                        JOptionPane.showMessageDialog(null, "Las unidades vendidas solo pueden ser numeros enteros, ingreselo nuevamente.");
+                                                        break;
+                                                    case 2:
+                                                        JOptionPane.showMessageDialog(null, "Las unidades vendidas no pueden ser mayores a las existentes, ingreselo nuevamente.");
+                                                        break;
+                                                    default:
+                                                        switch(controller.validarFecha()){
+                                                            case 1:
+                                                                JOptionPane.showMessageDialog(null, "Debes seleccionar un mes de vencimiento.");
+                                                                break;
+                                                            case 2:
+                                                                JOptionPane.showMessageDialog(null, "Debes seleccionar un año de vencimiento.");
+                                                                break;
+                                                            default:
+                                                                switch(controller.validarVigencia()){
+                                                                    case 1:
+                                                                        JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de vigenia.");
+                                                                        break;
+                                                                    default:
+                                                                        int option = JOptionPane.showConfirmDialog( null, "REQUIERE REFRIGERACION?", "CREAR MEDICAMENTO", JOptionPane.YES_NO_OPTION );
+                                                                        if (option == JOptionPane.YES_OPTION) { 
+                                                                            MedicamentoRefrigerado medicamento = new MedicamentoRefrigerado(0,0,"","",0,codigoTxt.getText(),nombreTxt.getText(),Double.parseDouble(costoTxt.getText()),0,Integer.parseInt(unidadesTxt1.getText()), Integer.parseInt(unidadesTxt.getText()),añoBox.getSelectedItem()+"-"+mesBox.getSelectedItem()+"-"+"01",loteTxt.getText(),String.valueOf(vigenciaBox.getSelectedItem()));
+                                                                            Refrigerado ref = new Refrigerado(usuarioActual,medicamento,noRefrigerados,refrigerados);
+                                                                            ref.setVisible(true);
+                                                                            this.setVisible(false);
+                                                                        } else if (option == JOptionPane.NO_OPTION) {
+                                                                            List<String> noAlmacenar = null;
+                                                                            MedicamentoNoRefrigerado medicamento = new MedicamentoNoRefrigerado(noAlmacenar, codigoTxt.getText(),nombreTxt.getText(),Double.parseDouble(costoTxt.getText()),0,Integer.parseInt(unidadesTxt1.getText()), Integer.parseInt(unidadesTxt.getText()),añoBox.getSelectedItem()+"-"+mesBox.getSelectedItem()+"-"+"01",loteTxt.getText(),String.valueOf(vigenciaBox.getSelectedItem()));
+                                                                            NoRefrigerado ref = new NoRefrigerado(usuarioActual, medicamento,noRefrigerados,refrigerados);
+                                                                            ref.setVisible(true);
+                                                                            this.setVisible(false);
+                                                                        }
+                                                                        break;
+                                                                }
+                                                                break; 
+                                                        }
+                                                        break;
+                                                }
+                                                break;
+                                        }
+                                        break;
+                                }
+                                break;
+                        }
+                        break;
+                }
+                break;
+            }
     }//GEN-LAST:event_guardarButtomMouseClicked
 
     private void guardarButtomMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarButtomMouseEntered
@@ -624,7 +687,7 @@ public class crearMedicamento extends javax.swing.JFrame {
     }//GEN-LAST:event_guardarButtomMouseExited
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        Gestor ventana = new Gestor();
+        Gestor ventana = new Gestor(usuarioActual,noRefrigerados,refrigerados);
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel1MouseClicked
@@ -632,6 +695,46 @@ public class crearMedicamento extends javax.swing.JFrame {
     private void vigenciaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vigenciaBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_vigenciaBoxActionPerformed
+
+    private void añoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añoBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_añoBoxActionPerformed
+
+    private void mesBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesBoxActionPerformed
+
+    private void unidadesTxt1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unidadesTxt1MousePressed
+        if (unidadesTxt1.getText().equals("Ingrese las unidades vendidas")){
+            unidadesTxt1.setText("");
+            unidadesTxt1.setForeground(Color.black);
+        }
+        if (nombreTxt.getText().isEmpty()){
+            nombreTxt.setText("Ingrese el nombre del medicamento");
+            nombreTxt.setForeground(new Color(153,153,153));
+        }
+        if (loteTxt.getText().isEmpty()){
+            loteTxt.setText("Ingrese el numero de lote");
+            loteTxt.setForeground(new Color(153,153,153));
+        }
+        if (costoTxt.getText().isEmpty()){
+            costoTxt.setText("Ingrese el costo inicial");
+            costoTxt.setForeground(new Color(153,153,153));
+        }
+        if (unidadesTxt.getText().isEmpty()){
+            unidadesTxt.setText("Ingrese las unidades existentes");
+            unidadesTxt.setForeground(new Color(153,153,153));
+        }
+        if (codigoTxt.getText().isEmpty()){
+            codigoTxt.setText("Ingrese el codigo del medicamento");
+            codigoTxt.setForeground(new Color(153,153,153));
+        }
+        
+    }//GEN-LAST:event_unidadesTxt1MousePressed
+
+    private void unidadesTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unidadesTxt1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_unidadesTxt1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -659,22 +762,24 @@ public class crearMedicamento extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(crearMedicamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        Map<String,MedicamentoNoRefrigerado> noRefrigerados = null;
+        Map<String,MedicamentoRefrigerado> refrigerados =null;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new crearMedicamento().setVisible(true);
+                new crearMedicamento(usuarioActual,noRefrigerados,refrigerados).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> añoBox;
     private javax.swing.JLabel codigoLabel;
     private javax.swing.JTextField codigoTxt;
     private javax.swing.JLabel costoLabel;
     private javax.swing.JTextField costoTxt;
     private javax.swing.JLabel fechaLabel;
-    private javax.swing.JTextField fechaTxt;
+    private javax.swing.JLabel fechaLabel1;
     private javax.swing.JPanel guardarButtom;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
@@ -687,14 +792,16 @@ public class crearMedicamento extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JLabel loteLabel;
     private javax.swing.JTextField loteTxt;
+    private javax.swing.JComboBox<String> mesBox;
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField nombreTxt;
     private javax.swing.JLabel unidadesLabel;
+    private javax.swing.JLabel unidadesLabel1;
     private javax.swing.JTextField unidadesTxt;
-    private javax.swing.JTextField userTxt7;
+    private javax.swing.JTextField unidadesTxt1;
     private javax.swing.JComboBox<String> vigenciaBox;
     private javax.swing.JLabel vigenciaLabel;
     // End of variables declaration//GEN-END:variables

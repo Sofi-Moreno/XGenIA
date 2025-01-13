@@ -4,8 +4,14 @@
  */
 package View;
 
+import Controller.ControllerRefrigeratedMedicines;
+import Controller.ControllerUnrefrigeratedMedicines;
+import Model.MedicamentoNoRefrigerado;
+import Model.MedicamentoRefrigerado;
 import Model.Usuario;
 import java.awt.Color;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,13 +20,31 @@ import javax.swing.ImageIcon;
  */
 public class MainMenu extends javax.swing.JFrame {
     private static Usuario usuarioActual;
+    private Map<String,MedicamentoRefrigerado> refrigerados;
+    private Map<String,MedicamentoNoRefrigerado> noRefrigerados;
+    private ControllerUnrefrigeratedMedicines noRefrigerado;
+    private ControllerRefrigeratedMedicines refrigerado;
     /**
      * Creates new form MainMenu
      */
     public MainMenu(Usuario usuario) {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
         this.setResizable(false);
+        noRefrigerados = new LinkedHashMap<>();
+        noRefrigerado = new ControllerUnrefrigeratedMedicines(noRefrigerados);
+        noRefrigerado.listaMedicamentos();
+        refrigerados = new LinkedHashMap<>();
+        refrigerado = new ControllerRefrigeratedMedicines(refrigerados);
+        refrigerado.listaMedicamentos();
+        usuarioActual = usuario;
+    }
+    public MainMenu(Usuario usuario,Map<String,MedicamentoNoRefrigerado> noRefrigerados,Map<String,MedicamentoRefrigerado> refrigerados) {
+        initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/Images/logo.png")).getImage());
+        this.setResizable(false);
+        this.noRefrigerados = noRefrigerados;
+        this.refrigerados = refrigerados;
         usuarioActual = usuario;
     }
 
@@ -264,13 +288,13 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_comprarButtomMouseExited
 
     private void comprarButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comprarButtomMouseClicked
-        ComprarMenu ventana = new ComprarMenu();
+        ComprarMenu ventana = new ComprarMenu(usuarioActual,noRefrigerados,refrigerados);
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_comprarButtomMouseClicked
 
     private void gestionarButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarButtomMouseClicked
-        Gestor ventana = new Gestor();
+        Gestor ventana = new Gestor(usuarioActual,noRefrigerados,refrigerados);
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarButtomMouseClicked
@@ -284,7 +308,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_gestionarButtomMouseExited
 
     private void perfilButtomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perfilButtomMouseClicked
-        miPerfil ventana = new miPerfil();
+        gestionUsuario ventana = new gestionUsuario(usuarioActual,"Mi Perfil",noRefrigerados,refrigerados);
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_perfilButtomMouseClicked
@@ -334,7 +358,6 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel comprarButtom;
-    private javax.swing.JPanel comprarButtom1;
     private javax.swing.JPanel gestionarButtom;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -343,8 +366,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
